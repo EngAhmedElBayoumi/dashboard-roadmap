@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خريطة تشغيل النظام — دليل الانطلاق</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #1B2D42;
+    --navy-light: #243B55;
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-pale: #F5E9C8;
+    --teal: #1AAFA8;
+    --teal-light: #23D8CF;
+    --sky: #4ECDC4;
+    --red-soft: #E05B5B;
+    --green-soft: #3DB878;
+    --white: #FFFFFF;
+    --off-white: #F8F6F1;
+    --text-muted: #8899AA;
+    --border: rgba(201,168,76,0.2);
+    --card-bg: rgba(255,255,255,0.04);
+    --shadow: 0 8px 40px rgba(0,0,0,0.4);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    line-height: 1.7;
+    direction: rtl;
+  }
+
+  /* ── COVER ───────────────────────────────────────── */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 40px;
+    background: radial-gradient(ellipse at 30% 20%, rgba(201,168,76,0.12) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 80%, rgba(26,175,168,0.1) 0%, transparent 55%),
+                linear-gradient(160deg, #0D1B2A 0%, #1B2D42 50%, #0D1B2A 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(201,168,76,0.04) 60px),
+      repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(201,168,76,0.04) 60px);
+  }
+
+  .cover-badge {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    padding: 7px 22px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  .cover h1 {
+    font-family: 'Tajawal', sans-serif;
+    font-size: clamp(38px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 1.2;
+    background: linear-gradient(135deg, var(--white) 30%, var(--gold-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .cover-sub {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 520px;
+    line-height: 1.8;
+    position: relative;
+    margin-bottom: 40px;
+  }
+
+  .cover-date {
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    position: relative;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    width: 260px;
+  }
+
+  .cover-scroll {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: bounce 2s infinite;
+  }
+
+  .cover-scroll::after {
+    content: '↓';
+    font-size: 20px;
+    color: var(--gold);
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── SECTION WRAPPER ─────────────────────────────── */
+  .section {
+    padding: 80px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 50px;
+  }
+
+  .section-num {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 2px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold);
+    padding: 4px 14px;
+    border-radius: 20px;
+  }
+
+  .section-title {
+    font-family: 'Tajawal', sans-serif;
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to left, transparent, var(--gold), transparent);
+    margin: 0 auto 60px;
+    opacity: 0.3;
+  }
+
+  /* ── OVERVIEW FLOW ───────────────────────────────── */
+  .overview-flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: center;
+    align-items: center;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px;
+    backdrop-filter: blur(6px);
+  }
+
+  .flow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    min-width: 100px;
+    max-width: 130px;
+    position: relative;
+  }
+
+  .flow-step-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+
+  .flow-step-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+  }
+
+  .flow-arrow {
+    font-size: 20px;
+    color: var(--gold);
+    opacity: 0.5;
+    margin-bottom: 30px;
+    flex-shrink: 0;
+  }
+
+  /* ── DEPENDENCY TREES ────────────────────────────── */
+  .dep-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .dep-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .dep-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3px;
+    height: 100%;
+    border-radius: 0 16px 16px 0;
+  }
+
+  .dep-card.gold::before { background: var(--gold); }
+  .dep-card.teal::before { background: var(--teal); }
+  .dep-card.sky::before { background: var(--sky); }
+  .dep-card.green::before { background: var(--green-soft); }
+  .dep-card.red::before { background: var(--red-soft); }
+
+  .dep-card-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dep-card.gold .dep-card-title { color: var(--gold); }
+  .dep-card.teal .dep-card-title { color: var(--teal-light); }
+  .dep-card.sky .dep-card-title { color: var(--sky); }
+  .dep-card.green .dep-card-title { color: var(--green-soft); }
+  .dep-card.red .dep-card-title { color: var(--red-soft); }
+
+  .dep-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .dep-node {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--off-white);
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .dep-node-icon { font-size: 16px; flex-shrink: 0; }
+
+  .dep-connector {
+    display: flex;
+    align-items: center;
+    padding-right: 24px;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  .dep-connector::before {
+    content: '└─';
+    font-family: monospace;
+    color: rgba(201,168,76,0.4);
+    font-size: 14px;
+    margin-right: 4px;
+  }
+
+  .dep-note {
+    margin-top: 16px;
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    border-right: 2px solid rgba(201,168,76,0.3);
+  }
+
+  /* ── PHASES ──────────────────────────────────────── */
+  .phases-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  .phases-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 33px;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--gold), var(--teal));
+    opacity: 0.3;
+    z-index: 0;
+  }
+
+  .phase-item {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .phase-num-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .phase-num {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 4px var(--navy), 0 0 0 6px rgba(201,168,76,0.3);
+  }
+
+  .phase-item:nth-child(1) .phase-num { background: linear-gradient(135deg, #C9A84C, #E8C97A); color: var(--navy); }
+  .phase-item:nth-child(2) .phase-num { background: linear-gradient(135deg, #1AAFA8, #23D8CF); color: var(--navy); }
+  .phase-item:nth-child(3) .phase-num { background: linear-gradient(135deg, #4ECDC4, #88E8E3); color: var(--navy); }
+  .phase-item:nth-child(4) .phase-num { background: linear-gradient(135deg, #3DB878, #6ECFA0); color: var(--navy); }
+  .phase-item:nth-child(5) .phase-num { background: linear-gradient(135deg, #E05B5B, #F08080); color: var(--white); }
+  .phase-item:nth-child(6) .phase-num { background: linear-gradient(135deg, #7B68EE, #9C8FFF); color: var(--white); }
+  .phase-item:nth-child(7) .phase-num { background: linear-gradient(135deg, #FF8C42, #FFAB6E); color: var(--navy); }
+
+  .phase-content {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 28px;
+    backdrop-filter: blur(4px);
+  }
+
+  .phase-title {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+  }
+
+  .phase-steps {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .phase-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--off-white);
+  }
+
+  .phase-steps li::before {
+    content: attr(data-n);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .phase-result {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: rgba(61,184,120,0.08);
+    border: 1px solid rgba(61,184,120,0.2);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #7ED9A8;
+    line-height: 1.6;
+  }
+
+  .phase-result-icon { flex-shrink: 0; font-size: 16px; }
+
+  /* ── ROLES TABLE ─────────────────────────────────── */
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .role-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .role-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+  }
+
+  .role-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .role-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 14px;
+  }
+
+  .role-tasks {
+    list-style: none;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .role-tasks li {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .role-tasks li::before {
+    content: '•';
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ── QUICK START ─────────────────────────────────── */
+  .quickstart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 14px;
+  }
+
+  .qs-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: border-color 0.2s;
+  }
+
+  .qs-item:hover { border-color: var(--gold); }
+
+  .qs-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .qs-label {
+    font-size: 13px;
+    color: var(--off-white);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  /* ── WARNINGS ────────────────────────────────────── */
+  .warnings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .warn-card {
+    background: rgba(224,91,91,0.06);
+    border: 1px solid rgba(224,91,91,0.2);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .warn-icon { font-size: 22px; flex-shrink: 0; }
+
+  .warn-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #F08080;
+    margin-bottom: 6px;
+  }
+
+  .warn-text { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── SUMMARY ROADMAP ─────────────────────────────── */
+  .summary-flow {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+
+  .sum-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sum-n {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--gold);
+    flex-shrink: 0;
+    min-width: 28px;
+  }
+
+  .sum-label { font-size: 13px; color: var(--off-white); line-height: 1.3; }
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  .footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  /* ── SECTION BG ALTERNATOR ───────────────────────── */
+  .section-alt {
+    background: rgba(255,255,255,0.015);
+  }
+
+  /* ── HIGHLIGHT BOX ───────────────────────────────── */
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(26,175,168,0.05));
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    font-size: 15px;
+    color: var(--off-white);
+    line-height: 1.9;
+  }
+
+  .highlight-box strong { color: var(--gold-light); }
+
+  /* responsive */
+  @media (max-width: 700px) {
+    .section { padding: 50px 20px; }
+    .phase-item { grid-template-columns: 50px 1fr; gap: 14px; }
+    .phases-container::before { right: 23px; }
+    .overview-flow { gap: 8px; }
+    .flow-arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ COVER ══════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-badge">دليل الانطلاق التشغيلي</div>
+  <h1>خريطة تشغيل النظام</h1>
+  <p class="cover-sub">
+    الترتيب الصحيح للتأسيس والتشغيل — من إنشاء الهيكل الإداري حتى الدورة التجارية الكاملة ومتابعة الموارد البشرية
+  </p>
+  <div class="cover-date">تاريخ الإعداد: ٢٩ أبريل ٢٠٢٦</div>
+  <div class="cover-scroll">تمرير للأسفل</div>
+</div>
+
+<!-- ══ SECTION 1 — OVERVIEW ═══════════════════════════ -->
+<div style="background: var(--navy-mid);">
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">القسم ١</span>
+    <h2 class="section-title">الخريطة العامة للنظام</h2>
+  </div>
+  <div class="highlight-box">
+    يسير النظام وفق <strong>تسلسل منطقي صارم</strong> — كل مرحلة تُبنى على ما سبقها. الشروع في أي خطوة قبل استكمال ما يسبقها سيُفضي إلى أخطاء تشغيلية يصعب تتبّعها لاحقًا.
+  </div>
+  <div class="overview-flow">
+
+    <div class="flow-step">
+      <div class="flow-step-icon" style="background:linear-gradient(135deg,#C9A84C,#E8C97A);">🏗️</div>
+      <div class="flow-step-label">تهيئة<br>النظام</div>
+    </div>
+    <div class="flow-arrow">←</div>
+
+    <div class="flow-step">
+      <div class="flow-step-icon" style="background:linear-gradient(135deg,#1AAFA8,#23D8CF);">🏢</div>
+      <div class="flow-step-label">الهيكل<br>الإداري</div>
+    </div>
+    <div class="flow-arrow">←</div>
+
+    <div class="flow-step">
+      <div class="flow-step-icon" style="background:linear-gradient(135deg,#4ECDC4,#88E8E3);">👤</div>
+      <div class="flow-step-label">المستخدمون<br>والصلاحيات</div>
+    </div>
+    <div class="flow-arrow">←</div>
+
+    <div class="flow-step">
+      <div class="flow-step-icon" style="background:linear-gradient(135deg,#3DB878,#6ECFA0);">💰</div>
+      <div class="flow-step-label">الإعدادات<br>المالية</div>
+    </div>
+    <div class="flow-arrow">←</div>
+
+    <div class="flow-step">
+      <div class="flow-step-icon" style="background:linear-gradient(135deg,#7B68EE,#9C8FFF);">📦</div>
+      <div class="flow-step-label">بيانات<br>التشغيل</div>
+    </div>
+    <div class="flow-arrow">←</div>
+
+    <div class="flow-step">
+      <div class="flow-step-icon" style="background:linear-gradient(135deg,#E05B5B,#F08080);">🤝</div>
+      <div class="flow-step-label">العملاء<br>والمبيعات</div>
+    </div>
+    <div class="flow-arrow">←</div>
+
+    <div class="flow-step">
+      <div class="flow-step-icon" style="background:linear-gradient(135deg,#FF8C42,#FFAB6E);">⚙️</div>
+      <div class="flow-step-label">التنفيذ<br>والمتابعة</div>
+    </div>
+    <div class="flow-arrow">←</div>
+
+    <div class="flow-step">
+      <div class="flow-step-icon" style="background:linear-gradient(135deg,#C9A84C,#E8C97A);">🧾</div>
+      <div class="flow-step-label">الفواتير<br>والتحصيل</div>
+    </div>
+    <div class="flow-arrow">←</div>
+
+    <div class="flow-step">
+      <div class="flow-step-icon" style="background:linear-gradient(135deg,#1AAFA8,#23D8CF);">📊</div>
+      <div class="flow-step-label">التقارير<br>والتحليل</div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ══ SECTION 2 — DEPENDENCY TREES ═══════════════════ -->
+<div style="background: var(--navy);">
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">القسم ٢</span>
+    <h2 class="section-title">علاقات الاعتماد بين الوحدات</h2>
+  </div>
+
+  <div class="dep-grid">
+
+    <!-- 1 -->
+    <div class="dep-card gold">
+      <div class="dep-card-title">🏗️ التهيئة الأساسية</div>
+      <div class="dep-tree">
+        <div class="dep-node"><span class="dep-node-icon">🏢</span> الفرع</div>
+        <div class="dep-connector">القسم</div>
+        <div class="dep-connector">الوظيفة</div>
+        <div class="dep-connector">الموظف / المستخدم</div>
+      </div>
+      <div class="dep-note">لا يمكن إنشاء موظف بدون فرع مسبق — الصلاحيات تعتمد على الوظيفة أولًا</div>
+    </div>
+
+    <!-- 2 -->
+    <div class="dep-card teal">
+      <div class="dep-card-title">💰 التشغيل المالي</div>
+      <div class="dep-tree">
+        <div class="dep-node"><span class="dep-node-icon">⚙️</span> الإعدادات المالية</div>
+        <div class="dep-connector">الحسابات</div>
+        <div class="dep-connector">طرق الدفع</div>
+        <div class="dep-connector">إيصالات الاستلام / الدفع</div>
+      </div>
+      <div class="dep-note">طرق الدفع يجب إعدادها قبل البدء في الإيصالات وإلا ستتعطّل القيود المحاسبية</div>
+    </div>
+
+    <!-- 3 -->
+    <div class="dep-card sky">
+      <div class="dep-card-title">🤝 التشغيل التجاري</div>
+      <div class="dep-tree">
+        <div class="dep-node"><span class="dep-node-icon">🛎️</span> الخدمة</div>
+        <div class="dep-connector">العميل</div>
+        <div class="dep-connector">المتابعة</div>
+        <div class="dep-connector">عرض السعر</div>
+        <div class="dep-connector">فاتورة المبيعات</div>
+        <div class="dep-connector">إيصال الاستلام</div>
+      </div>
+      <div class="dep-note">الخدمة تسبق العميل — العميل يسبق عرض السعر — الفاتورة تسبق التحصيل</div>
+    </div>
+
+    <!-- 4 -->
+    <div class="dep-card green">
+      <div class="dep-card-title">⚙️ التشغيل التنفيذي</div>
+      <div class="dep-tree">
+        <div class="dep-node"><span class="dep-node-icon">📦</span> فئة المخزون / الوحدة</div>
+        <div class="dep-connector">عنصر المخزون</div>
+        <div class="dep-connector">المهمة</div>
+        <div class="dep-connector">العناصر المستهلكة بالمهمة</div>
+        <div class="dep-connector">العناصر المستهلكة بالفاتورة</div>
+        <div class="dep-connector">تأكيد الفاتورة ← خصم المخزون</div>
+      </div>
+      <div class="dep-note">الخصم من المخزون يحدث فقط بعد تأكيد الفاتورة — لا قبل ذلك</div>
+    </div>
+
+    <!-- 5 -->
+    <div class="dep-card red">
+      <div class="dep-card-title">👥 الموارد البشرية</div>
+      <div class="dep-tree">
+        <div class="dep-node"><span class="dep-node-icon">📋</span> سياسة الحضور</div>
+        <div class="dep-connector">الإجازات الرسمية</div>
+        <div class="dep-connector">سجلات الحضور</div>
+        <div class="dep-connector">طلبات الإجازة</div>
+        <div class="dep-connector">تشغيل الرواتب</div>
+      </div>
+      <div class="dep-note">الرواتب تعتمد على الحضور والإجازات والمكافآت وعمولات المهام معًا</div>
+    </div>
+
+    <!-- 6 -->
+    <div class="dep-card gold">
+      <div class="dep-card-title">📊 التقارير</div>
+      <div class="dep-tree">
+        <div class="dep-node"><span class="dep-node-icon">🗄️</span> بيانات التشغيل الكاملة</div>
+        <div class="dep-connector">التقارير المحفوظة / المخصصة</div>
+        <div class="dep-connector">مراجعة الإدارة</div>
+      </div>
+      <div class="dep-note">التقارير لا تُبنى قبل وجود بيانات تشغيلية صحيحة من الفروع والعملاء والفواتير</div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ══ SECTION 3 — PHASES ══════════════════════════════ -->
+<div style="background: var(--navy-mid);">
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">القسم ٣</span>
+    <h2 class="section-title">مراحل الانطلاق خطوة بخطوة</h2>
+  </div>
+
+  <div class="phases-container">
+
+    <!-- Phase 1 -->
+    <div class="phase-item">
+      <div class="phase-num-wrap">
+        <div class="phase-num">١</div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-title">🏗️ تهيئة الهيكل الإداري</div>
+        <ul class="phase-steps">
+          <li data-n="١">إنشاء الفرع أو الفروع</li>
+          <li data-n="٢">إنشاء الأقسام</li>
+          <li data-n="٣">إنشاء الوظائف</li>
+          <li data-n="٤">ضبط الصلاحيات على الوظائف</li>
+          <li data-n="٥">إنشاء الموظفين</li>
+          <li data-n="٦">ربط كل موظف بفرع وقسم ووظيفة</li>
+          <li data-n="٧">تحديد مدير الفرع عند الحاجة</li>
+        </ul>
+        <div class="phase-result">
+          <span class="phase-result-icon">✅</span>
+          يصبح لديك هيكل إداري ومستخدمون يمكنهم الدخول للنظام والعمل عليه
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="phase-item">
+      <div class="phase-num-wrap">
+        <div class="phase-num">٢</div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-title">💰 التهيئة المالية</div>
+        <ul class="phase-steps">
+          <li data-n="١">ضبط الإعدادات المالية</li>
+          <li data-n="٢">إنشاء الحسابات المالية الأساسية</li>
+          <li data-n="٣">إنشاء طرق الدفع</li>
+          <li data-n="٤">مراجعة الحسابات المستخدمة في القيود والتحصيل</li>
+        </ul>
+        <div class="phase-result">
+          <span class="phase-result-icon">✅</span>
+          تصبح الفواتير والإيصالات قابلة للتشغيل بدون أخطاء محاسبية
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="phase-item">
+      <div class="phase-num-wrap">
+        <div class="phase-num">٣</div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-title">📦 تجهيز بيانات التشغيل الأساسية</div>
+        <ul class="phase-steps">
+          <li data-n="١">إنشاء الخدمات</li>
+          <li data-n="٢">إنشاء فئات المخزون</li>
+          <li data-n="٣">إنشاء الوحدات</li>
+          <li data-n="٤">إنشاء العناصر المخزنية</li>
+          <li data-n="٥">إدخال بيانات المخزون الافتتاحية إن وُجدت</li>
+        </ul>
+        <div class="phase-result">
+          <span class="phase-result-icon">✅</span>
+          يصبح لديك ما يمكن بيعه أو استهلاكه أثناء التنفيذ
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 4 -->
+    <div class="phase-item">
+      <div class="phase-num-wrap">
+        <div class="phase-num">٤</div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-title">🤝 إعداد المبيعات وخدمة العملاء</div>
+        <ul class="phase-steps">
+          <li data-n="١">إنشاء العميل</li>
+          <li data-n="٢">تعيين الموظف المسؤول عن العميل</li>
+          <li data-n="٣">تسجيل طلب العميل أو المتابعة الأولية</li>
+          <li data-n="٤">إنشاء عرض سعر</li>
+          <li data-n="٥">تفعيل الحجز وتحديد تاريخه إذا احتاج العميل موعدًا</li>
+        </ul>
+        <div class="phase-result">
+          <span class="phase-result-icon">✅</span>
+          العميل أصبح داخل النظام وبدأت دورة البيع المنظمة
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 5 -->
+    <div class="phase-item">
+      <div class="phase-num-wrap">
+        <div class="phase-num">٥</div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-title">⚙️ التنفيذ الميداني</div>
+        <ul class="phase-steps">
+          <li data-n="١">إنشاء مهمة مرتبطة بالعميل أو بعرض السعر</li>
+          <li data-n="٢">تعيين الموظفين المنفذين</li>
+          <li data-n="٣">تسجيل العناصر المستهلكة داخل المهمة</li>
+          <li data-n="٤">تحديث حالة المهمة حتى الإكمال</li>
+        </ul>
+        <div class="phase-result">
+          <span class="phase-result-icon">✅</span>
+          التنفيذ أصبح موثقًا ويمكن ربطه بالفاتورة والرواتب لاحقًا
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 6 -->
+    <div class="phase-item">
+      <div class="phase-num-wrap">
+        <div class="phase-num">٦</div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-title">🧾 الفاتورة والتحصيل</div>
+        <ul class="phase-steps">
+          <li data-n="١">قبول عرض السعر</li>
+          <li data-n="٢">إنشاء فاتورة المبيعات أو التأكد من إنشائها تلقائيًا</li>
+          <li data-n="٣">مراجعة العناصر المستهلكة على الفاتورة</li>
+          <li data-n="٤">تأكيد الفاتورة من مدير الفرع أو المفوَّض</li>
+          <li data-n="٥">بعد التأكيد: اعتماد الاستهلاك وخصم المخزون</li>
+          <li data-n="٦">إنشاء إيصال الاستلام</li>
+          <li data-n="٧">تحديث حالة الدفع (غير مدفوع / جزئي / مكتمل)</li>
+        </ul>
+        <div class="phase-result">
+          <span class="phase-result-icon">✅</span>
+          تمت الدورة التجارية للعميل بالكامل من عرض السعر حتى التحصيل
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 7 -->
+    <div class="phase-item">
+      <div class="phase-num-wrap">
+        <div class="phase-num">٧</div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-title">👥 التشغيل الدوري للموارد البشرية</div>
+        <ul class="phase-steps">
+          <li data-n="١">اعتماد سجلات الحضور والانصراف</li>
+          <li data-n="٢">مراجعة الإجازات ورصيدها المكتسب</li>
+          <li data-n="٣">مراجعة عمولات المهام المكتملة</li>
+          <li data-n="٤">مراجعة المكافآت والخصومات والمسابقات</li>
+          <li data-n="٥">تشغيل الرواتب الشهرية</li>
+        </ul>
+        <div class="phase-result">
+          <span class="phase-result-icon">✅</span>
+          النظام يتحول من أداة مبيعات إلى نظام تشغيل متكامل يشمل الموارد البشرية
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ══ SECTION 4 — DAILY ROLES ════════════════════════ -->
+<div style="background: var(--navy);">
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">القسم ٤</span>
+    <h2 class="section-title">مسار كل دور في النظام يوميًا</h2>
+  </div>
+
+  <div class="roles-grid">
+
+    <div class="role-card">
+      <div class="role-icon">🛡️</div>
+      <div class="role-name">مدير النظام</div>
+      <ul class="role-tasks">
+        <li>يُعد الفروع والأقسام والوظائف</li>
+        <li>يضبط الصلاحيات</li>
+        <li>يراجع الإعدادات المالية</li>
+        <li>يراقب التقارير العامة</li>
+      </ul>
+    </div>
+
+    <div class="role-card">
+      <div class="role-icon">🏢</div>
+      <div class="role-name">مدير الفرع</div>
+      <ul class="role-tasks">
+        <li>يراجع عملاء الفرع</li>
+        <li>يراجع عروض الأسعار والفواتير</li>
+        <li>يؤكد فواتير الاستهلاك</li>
+        <li>يتابع الموظفين والمهام</li>
+      </ul>
+    </div>
+
+    <div class="role-card">
+      <div class="role-icon">🤝</div>
+      <div class="role-name">مسؤول العميل</div>
+      <ul class="role-tasks">
+        <li>يُنشئ العميل في النظام</li>
+        <li>يتابع العميل بانتظام</li>
+        <li>يُعد عروض الأسعار</li>
+        <li>يحدد المواعيد والحجوزات</li>
+      </ul>
+    </div>
+
+    <div class="role-card">
+      <div class="role-icon">⚙️</div>
+      <div class="role-name">الموظف التنفيذي</div>
+      <ul class="role-tasks">
+        <li>ينفذ المهام الموكلة إليه</li>
+        <li>يسجل العناصر المستهلكة</li>
+        <li>يحدّث حالة المهمة</li>
+      </ul>
+    </div>
+
+    <div class="role-card">
+      <div class="role-icon">💼</div>
+      <div class="role-name">المحاسب</div>
+      <ul class="role-tasks">
+        <li>يراجع الفواتير</li>
+        <li>يُنشئ إيصالات الاستلام والدفع</li>
+        <li>يتابع حالات الدفع والحسابات</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ══ SECTION 5 — QUICK START ════════════════════════ -->
+<div style="background: var(--navy-mid);">
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">القسم ٥</span>
+    <h2 class="section-title">مسار البدء السريع للتجربة الأولى</h2>
+  </div>
+  <p style="color:var(--text-muted); margin-bottom:28px; font-size:14px; line-height:1.8;">
+    إذا كان الهدف تجربة النظام بسرعة بدون الدخول في كل التفاصيل، هذا هو أقل مسار صحيح للوصول إلى تشغيل دورة كاملة:
+  </p>
+  <div class="quickstart-grid">
+    <div class="qs-item"><div class="qs-num">١</div><div class="qs-label">إنشاء فرع</div></div>
+    <div class="qs-item"><div class="qs-num">٢</div><div class="qs-label">إنشاء قسم</div></div>
+    <div class="qs-item"><div class="qs-num">٣</div><div class="qs-label">إنشاء وظيفة بصلاحيات</div></div>
+    <div class="qs-item"><div class="qs-num">٤</div><div class="qs-label">إنشاء موظف</div></div>
+    <div class="qs-item"><div class="qs-num">٥</div><div class="qs-label">إنشاء خدمة</div></div>
+    <div class="qs-item"><div class="qs-num">٦</div><div class="qs-label">إنشاء عنصر مخزني</div></div>
+    <div class="qs-item"><div class="qs-num">٧</div><div class="qs-label">ضبط الإعدادات المالية</div></div>
+    <div class="qs-item"><div class="qs-num">٨</div><div class="qs-label">إنشاء عميل</div></div>
+    <div class="qs-item"><div class="qs-num">٩</div><div class="qs-label">إنشاء عرض سعر</div></div>
+    <div class="qs-item"><div class="qs-num">١٠</div><div class="qs-label">إنشاء مهمة وربطها</div></div>
+    <div class="qs-item"><div class="qs-num">١١</div><div class="qs-label">تسجيل عنصر مستهلك</div></div>
+    <div class="qs-item"><div class="qs-num">١٢</div><div class="qs-label">قبول عرض السعر</div></div>
+    <div class="qs-item"><div class="qs-num">١٣</div><div class="qs-label">مراجعة وتأكيد الفاتورة</div></div>
+    <div class="qs-item"><div class="qs-num">١٤</div><div class="qs-label">إنشاء إيصال استلام</div></div>
+    <div class="qs-item"><div class="qs-num">١٥</div><div class="qs-label">فتح التقارير</div></div>
+  </div>
+</div>
+</div>
+
+<!-- ══ SECTION 6 — WARNINGS ═══════════════════════════ -->
+<div style="background: var(--navy);">
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">القسم ٦</span>
+    <h2 class="section-title">أخطاء شائعة يجب تجنبها</h2>
+  </div>
+  <div class="warnings-grid">
+
+    <div class="warn-card">
+      <span class="warn-icon">⚠️</span>
+      <div>
+        <div class="warn-title">إنشاء موظف قبل تجهيز الفرع</div>
+        <div class="warn-text">الموظف يعتمد بشكل أساسي على الفرع — لن يكتمل الإنشاء بشكل صحيح</div>
+      </div>
+    </div>
+
+    <div class="warn-card">
+      <span class="warn-icon">⚠️</span>
+      <div>
+        <div class="warn-title">بدء الفواتير قبل تجهيز الحسابات</div>
+        <div class="warn-text">يؤدي إلى تعطّل القيود المحاسبية أو عدم اكتمال الإيصالات</div>
+      </div>
+    </div>
+
+    <div class="warn-card">
+      <span class="warn-icon">⚠️</span>
+      <div>
+        <div class="warn-title">إنشاء عميل بدون مسؤول واضح</div>
+        <div class="warn-text">يُربك المتابعات والصلاحيات ويُفقد الأعمال التنظيم اللازم</div>
+      </div>
+    </div>
+
+    <div class="warn-card">
+      <span class="warn-icon">⚠️</span>
+      <div>
+        <div class="warn-title">استخدام العناصر المستهلكة بدون مخزون</div>
+        <div class="warn-text">يعطّل مراحل التنفيذ وإنشاء الفواتير بالكامل</div>
+      </div>
+    </div>
+
+    <div class="warn-card">
+      <span class="warn-icon">⚠️</span>
+      <div>
+        <div class="warn-title">تأكيد الفاتورة قبل مراجعة الاستهلاك</div>
+        <div class="warn-text">بعد التأكيد يبدأ أثر المخزون الفعلي — لا يمكن التراجع بسهولة</div>
+      </div>
+    </div>
+
+    <div class="warn-card">
+      <span class="warn-icon">⚠️</span>
+      <div>
+        <div class="warn-title">تشغيل الرواتب قبل مراجعة الحضور</div>
+        <div class="warn-text">نتائج الرواتب ستكون غير دقيقة — لا بد من مراجعة الحضور والإجازات والعمولات أولًا</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ══ SECTION 7 — SUMMARY ROADMAP ════════════════════ -->
+<div style="background: var(--navy-mid);">
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">القسم ٧</span>
+    <h2 class="section-title">الخريطة المختصرة — نظرة سريعة</h2>
+  </div>
+  <div class="summary-flow">
+    <div class="sum-item"><div class="sum-n">١</div><div class="sum-label">الفروع</div></div>
+    <div class="sum-item"><div class="sum-n">٢</div><div class="sum-label">الأقسام</div></div>
+    <div class="sum-item"><div class="sum-n">٣</div><div class="sum-label">الوظائف والصلاحيات</div></div>
+    <div class="sum-item"><div class="sum-n">٤</div><div class="sum-label">الموظفون والمستخدمون</div></div>
+    <div class="sum-item"><div class="sum-n">٥</div><div class="sum-label">الإعدادات المالية والحسابات وطرق الدفع</div></div>
+    <div class="sum-item"><div class="sum-n">٦</div><div class="sum-label">الخدمات وإعداد المخزون</div></div>
+    <div class="sum-item"><div class="sum-n">٧</div><div class="sum-label">العملاء</div></div>
+    <div class="sum-item"><div class="sum-n">٨</div><div class="sum-label">عروض الأسعار والمواعيد</div></div>
+    <div class="sum-item"><div class="sum-n">٩</div><div class="sum-label">المهام والعناصر المستهلكة</div></div>
+    <div class="sum-item"><div class="sum-n">١٠</div><div class="sum-label">فواتير المبيعات</div></div>
+    <div class="sum-item"><div class="sum-n">١١</div><div class="sum-label">تأكيد الفاتورة</div></div>
+    <div class="sum-item"><div class="sum-n">١٢</div><div class="sum-label">إيصالات الاستلام</div></div>
+    <div class="sum-item"><div class="sum-n">١٣</div><div class="sum-label">الحضور والإجازات والرواتب</div></div>
+    <div class="sum-item"><div class="sum-n">١٤</div><div class="sum-label">التقارير والتقارير المخصصة</div></div>
+  </div>
+</div>
+</div>
+
+<!-- ══ FOOTER ══════════════════════════════════════════ -->
+<div class="footer">
+  <div style="font-size:20px; margin-bottom:10px; color: var(--gold);">◆</div>
+  خريطة تشغيل النظام — وثيقة داخلية للعميل — إعداد ٢٠٢٦
+</div>
+
+</body>
+</html>
