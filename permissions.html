@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دليل الصلاحيات — Royal Nano</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #09111C;
+  --bg2:      #0E1A28;
+  --bg3:      #142133;
+  --panel:    rgba(255,255,255,0.035);
+  --border:   rgba(255,255,255,0.07);
+  --gold:     #C8A84B;
+  --gold2:    #E5CC7A;
+  --gold-dim: rgba(200,168,75,0.12);
+  --teal:     #19AEA7;
+  --teal2:    #22D6CD;
+  --sky:      #4EC9C1;
+  --green:    #3DB878;
+  --red:      #E05B5B;
+  --red2:     #F08080;
+  --purple:   #7B68EE;
+  --orange:   #FF8C42;
+  --white:    #FFFFFF;
+  --off:      #F2EEE6;
+  --muted:    #7A8FA6;
+  --muted2:   #5A6E82;
+  --shadow:   0 12px 48px rgba(0,0,0,0.5);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Cairo',sans-serif;
+  background:var(--bg);
+  color:var(--white);
+  line-height:1.75;
+  direction:rtl;
+  overflow-x:hidden;
+}
+
+/* ── NAV ─────────────────────────────────────── */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(9,17,28,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:58px;
+}
+.nav-logo{
+  font-family:'Tajawal',sans-serif;
+  font-size:15px;font-weight:800;
+  color:var(--gold2);
+  letter-spacing:1px;
+}
+.nav-links{display:flex;gap:6px;}
+.nav-links a{
+  font-size:12px;color:var(--muted);
+  text-decoration:none;
+  padding:5px 12px;border-radius:20px;
+  transition:all .2s;
+}
+.nav-links a:hover{color:var(--gold2);background:var(--gold-dim);}
+
+/* ── HERO ────────────────────────────────────── */
+.hero{
+  min-height:92vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:80px 40px 60px;
+  background:
+    radial-gradient(ellipse at 25% 15%, rgba(200,168,75,0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 80%, rgba(25,174,167,0.09) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(14,26,40,0.6) 0%, transparent 100%);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle, rgba(200,168,75,0.06) 1px, transparent 1px);
+  background-size:40px 40px;
+  animation:drift 25s linear infinite;
+}
+@keyframes drift{from{background-position:0 0}to{background-position:80px 80px}}
+
+.hero-tag{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  color:var(--gold);text-transform:uppercase;
+  border:1px solid rgba(200,168,75,0.35);
+  padding:6px 20px;border-radius:30px;
+  background:rgba(200,168,75,0.06);
+  margin-bottom:28px;position:relative;
+}
+.hero h1{
+  font-family:'Tajawal',sans-serif;
+  font-size:clamp(40px,7vw,80px);
+  font-weight:900;line-height:1.15;
+  background:linear-gradient(135deg,#fff 30%,var(--gold2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:22px;position:relative;
+}
+.hero-sub{
+  font-size:16px;color:var(--muted);
+  max-width:560px;line-height:1.9;
+  position:relative;margin-bottom:50px;
+}
+.hero-pills{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  position:relative;
+}
+.hero-pill{
+  display:flex;align-items:center;gap:8px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:30px;padding:8px 18px;
+  font-size:13px;color:var(--off);
+  transition:border-color .2s;
+}
+.hero-pill:hover{border-color:var(--gold);}
+.hero-pill-dot{
+  width:8px;height:8px;border-radius:50%;flex-shrink:0;
+}
+
+/* ── WRAPPER ─────────────────────────────────── */
+.wrap{max-width:1080px;margin:0 auto;padding:80px 40px;}
+.wrap-sm{max-width:860px;margin:0 auto;padding:80px 40px;}
+
+/* ── SECTION HEADING ─────────────────────────── */
+.sh{margin-bottom:48px;}
+.sh-tag{
+  display:inline-block;
+  font-size:11px;font-weight:700;letter-spacing:2px;
+  color:var(--gold);text-transform:uppercase;
+  background:var(--gold-dim);
+  border:1px solid rgba(200,168,75,0.25);
+  padding:4px 14px;border-radius:20px;
+  margin-bottom:14px;
+}
+.sh h2{
+  font-family:'Tajawal',sans-serif;
+  font-size:clamp(24px,3.5vw,38px);
+  font-weight:800;color:var(--white);
+  line-height:1.2;
+}
+.sh p{
+  font-size:15px;color:var(--muted);
+  margin-top:12px;line-height:1.8;
+  max-width:600px;
+}
+.divline{
+  height:1px;
+  background:linear-gradient(to left,transparent,var(--gold),transparent);
+  opacity:.2;margin:0 auto 70px;
+}
+
+/* ── CONCEPT DIAGRAM ─────────────────────────── */
+.concept-visual{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:40px;
+  margin-bottom:32px;
+  position:relative;overflow:hidden;
+}
+.concept-visual::before{
+  content:'';position:absolute;top:-1px;right:0;
+  width:180px;height:3px;
+  background:linear-gradient(to left,transparent,var(--gold));
+}
+.concept-layers{
+  display:flex;flex-direction:column;gap:0;
+  max-width:640px;margin:0 auto;
+}
+.c-layer{
+  display:flex;align-items:stretch;
+  border-radius:14px;overflow:hidden;
+  margin-bottom:4px;
+  transition:transform .2s;
+}
+.c-layer:hover{transform:translateX(-4px);}
+.c-layer-label{
+  width:160px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;
+  text-align:center;padding:16px 12px;
+  letter-spacing:.5px;
+}
+.c-layer-body{
+  flex:1;
+  display:flex;align-items:center;
+  padding:16px 20px;
+  font-size:13px;color:var(--off);
+  line-height:1.6;
+  border-right:1px solid rgba(255,255,255,0.06);
+}
+.c-layer-icon{
+  font-size:20px;margin-left:12px;flex-shrink:0;
+}
+.c-arrow{
+  text-align:center;font-size:20px;
+  color:var(--gold);opacity:.4;
+  padding:4px 0;
+}
+
+/* layer colors */
+.cl-1 .c-layer-label{background:linear-gradient(135deg,#C8A84B,#E5CC7A);color:#0a0a0a;}
+.cl-1 .c-layer-body{background:rgba(200,168,75,0.06);}
+.cl-2 .c-layer-label{background:linear-gradient(135deg,#19AEA7,#22D6CD);color:#0a0a0a;}
+.cl-2 .c-layer-body{background:rgba(25,174,167,0.06);}
+.cl-3 .c-layer-label{background:linear-gradient(135deg,#7B68EE,#9C8FFF);color:#fff;}
+.cl-3 .c-layer-body{background:rgba(123,104,238,0.06);}
+
+/* ── RULE BOX ────────────────────────────────── */
+.rule-box{
+  background:linear-gradient(135deg,rgba(200,168,75,0.07),rgba(25,174,167,0.04));
+  border:1px solid rgba(200,168,75,0.2);
+  border-radius:14px;
+  padding:22px 26px;
+  font-size:14px;color:var(--off);
+  line-height:1.9;
+}
+.rule-box strong{color:var(--gold2);}
+
+/* ── 4 CRUD CARDS ────────────────────────────── */
+.crud-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  margin-bottom:32px;
+}
+.crud-card{
+  border-radius:14px;
+  padding:24px 22px;
+  border:1px solid transparent;
+  transition:transform .2s,border-color .2s;
+  position:relative;overflow:hidden;
+}
+.crud-card::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;
+  height:2px;
+  border-radius:0 0 14px 14px;
+}
+.crud-card:hover{transform:translateY(-4px);}
+.cc-view{background:rgba(78,201,193,0.07);border-color:rgba(78,201,193,0.15);}
+.cc-view::after{background:var(--sky);}
+.cc-add{background:rgba(61,184,120,0.07);border-color:rgba(61,184,120,0.15);}
+.cc-add::after{background:var(--green);}
+.cc-change{background:rgba(200,168,75,0.07);border-color:rgba(200,168,75,0.15);}
+.cc-change::after{background:var(--gold);}
+.cc-delete{background:rgba(224,91,91,0.07);border-color:rgba(224,91,91,0.15);}
+.cc-delete::after{background:var(--red);}
+.crud-card-name{
+  font-family:'Tajawal',sans-serif;
+  font-size:20px;font-weight:800;
+  margin-bottom:10px;
+  font-variant-ligatures:none;
+}
+.cc-view .crud-card-name{color:var(--sky);}
+.cc-add .crud-card-name{color:var(--green);}
+.cc-change .crud-card-name{color:var(--gold2);}
+.cc-delete .crud-card-name{color:var(--red2);}
+.crud-card-desc{font-size:13px;color:var(--muted);line-height:1.7;}
+.crud-card-icon{font-size:28px;margin-bottom:14px;}
+
+/* ── EXAMPLE BOX ─────────────────────────────── */
+.ex-box{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:26px 28px;
+}
+.ex-box-title{
+  font-size:12px;font-weight:700;
+  color:var(--muted);letter-spacing:2px;
+  text-transform:uppercase;margin-bottom:16px;
+}
+.ex-row{
+  display:flex;align-items:center;
+  gap:10px;padding:8px 0;
+  border-bottom:1px solid var(--border);
+  font-size:13px;
+}
+.ex-row:last-child{border-bottom:none;}
+.ex-perm{
+  font-family:monospace;
+  font-size:12px;
+  padding:3px 10px;border-radius:6px;
+  flex-shrink:0;
+}
+.ex-perm.on{background:rgba(61,184,120,0.15);color:#7ED9A8;border:1px solid rgba(61,184,120,0.25);}
+.ex-perm.off{background:rgba(224,91,91,0.08);color:#F08080;border:1px solid rgba(224,91,91,0.15);}
+.ex-row-result{color:var(--off);line-height:1.5;}
+
+/* ── SCOPE SECTION ───────────────────────────── */
+.scope-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+}
+.scope-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:24px;
+  position:relative;
+}
+.scope-card::before{
+  content:'';position:absolute;
+  top:0;right:0;width:3px;height:100%;
+  border-radius:0 14px 14px 0;
+}
+.sc-gold::before{background:var(--gold);}
+.sc-teal::before{background:var(--teal);}
+.sc-purple::before{background:var(--purple);}
+.scope-card-title{
+  font-weight:700;font-size:14px;
+  color:var(--gold2);margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+.sc-teal .scope-card-title{color:var(--teal2);}
+.sc-purple .scope-card-title{color:#9C8FFF;}
+.scope-card-text{font-size:13px;color:var(--muted);line-height:1.8;}
+
+/* ── SPECIAL PERMS ───────────────────────────── */
+.sp-grid{display:flex;flex-direction:column;gap:20px;}
+.sp-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  transition:border-color .2s;
+}
+.sp-card:hover{border-color:rgba(200,168,75,0.3);}
+.sp-header{
+  display:flex;align-items:center;
+  gap:16px;padding:20px 24px;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+  user-select:none;
+}
+.sp-icon{font-size:22px;flex-shrink:0;}
+.sp-title-wrap{flex:1;}
+.sp-code{
+  font-family:monospace;font-size:12px;
+  color:var(--gold);
+  background:rgba(200,168,75,0.1);
+  border:1px solid rgba(200,168,75,0.2);
+  padding:3px 10px;border-radius:6px;
+  margin-bottom:4px;display:inline-block;
+}
+.sp-name{font-size:14px;font-weight:600;color:var(--off);}
+.sp-toggle{
+  font-size:18px;color:var(--muted);
+  transition:transform .3s;flex-shrink:0;
+}
+.sp-body{
+  padding:0 24px;max-height:0;overflow:hidden;
+  transition:max-height .4s ease, padding .3s;
+}
+.sp-body.open{max-height:600px;padding:20px 24px;}
+.sp-body-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+@media(max-width:600px){.sp-body-inner{grid-template-columns:1fr;}}
+.sp-mini{
+  border-radius:10px;padding:14px 16px;
+}
+.sp-mini-title{
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:8px;
+}
+.sp-mini.with-it{
+  background:rgba(61,184,120,0.07);
+  border:1px solid rgba(61,184,120,0.15);
+}
+.sp-mini.with-it .sp-mini-title{color:#7ED9A8;}
+.sp-mini.without-it{
+  background:rgba(224,91,91,0.06);
+  border:1px solid rgba(224,91,91,0.12);
+}
+.sp-mini.without-it .sp-mini-title{color:#F08080;}
+.sp-mini ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.sp-mini ul li{
+  font-size:12px;color:var(--muted);
+  display:flex;align-items:flex-start;gap:6px;
+}
+.sp-mini ul li::before{
+  content:'•';flex-shrink:0;margin-top:1px;
+}
+.sp-mini.with-it ul li::before{color:#7ED9A8;}
+.sp-mini.without-it ul li::before{color:#F08080;}
+.sp-who{
+  grid-column:1/-1;
+  background:rgba(200,168,75,0.05);
+  border:1px solid rgba(200,168,75,0.12);
+  border-radius:10px;padding:14px 16px;
+}
+.sp-who-title{
+  font-size:11px;font-weight:700;
+  color:var(--gold);letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:10px;
+}
+.sp-who-chips{display:flex;flex-wrap:wrap;gap:7px;}
+.sp-chip{
+  font-size:12px;
+  padding:4px 12px;border-radius:20px;
+  border:1px solid;
+}
+.sp-chip.yes{
+  color:#7ED9A8;
+  background:rgba(61,184,120,0.08);
+  border-color:rgba(61,184,120,0.2);
+}
+.sp-chip.no{
+  color:#F08080;
+  background:rgba(224,91,91,0.06);
+  border-color:rgba(224,91,91,0.15);
+}
+
+/* ── ROLES ───────────────────────────────────── */
+.role-tabs{
+  display:flex;flex-wrap:wrap;gap:8px;
+  margin-bottom:28px;
+}
+.rtab{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 18px;border-radius:30px;
+  font-size:13px;font-weight:600;
+  border:1px solid var(--border);
+  color:var(--muted);background:var(--panel);
+  cursor:pointer;transition:all .2s;
+}
+.rtab:hover{color:var(--off);border-color:rgba(200,168,75,0.3);}
+.rtab.active{color:var(--bg);border-color:transparent;}
+.rtab-icon{font-size:16px;}
+.role-panel{display:none;}
+.role-panel.active{display:block;}
+.role-card-wrap{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  overflow:hidden;
+}
+.role-card-header{
+  padding:28px 32px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:20px;
+}
+.role-big-icon{
+  width:60px;height:60px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;flex-shrink:0;
+}
+.role-card-title{
+  font-family:'Tajawal',sans-serif;
+  font-size:22px;font-weight:800;color:var(--white);
+  margin-bottom:4px;
+}
+.role-card-sub{font-size:13px;color:var(--muted);}
+.role-card-body{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0;
+}
+@media(max-width:700px){.role-card-body{grid-template-columns:1fr;}}
+.role-col{padding:24px 28px;}
+.role-col+.role-col{border-right:1px solid var(--border);}
+.role-col-title{
+  font-size:12px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  margin-bottom:14px;
+}
+.role-perm-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.role-perm-list li{
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:13px;line-height:1.5;
+}
+.rp-dot{
+  width:7px;height:7px;border-radius:50%;
+  flex-shrink:0;margin-top:5px;
+}
+.rp-has{color:var(--off);}
+.rp-has .rp-dot{background:var(--green);}
+.rp-hasnt{color:var(--muted2);}
+.rp-hasnt .rp-dot{background:var(--muted2);}
+.role-code-section{
+  padding:20px 28px;
+  border-top:1px solid var(--border);
+  background:rgba(0,0,0,0.15);
+}
+.role-code-title{
+  font-size:11px;font-weight:700;
+  color:var(--muted);letter-spacing:1.5px;
+  text-transform:uppercase;margin-bottom:12px;
+}
+.perm-chips{display:flex;flex-wrap:wrap;gap:7px;}
+.pchip{
+  font-family:monospace;font-size:11px;
+  padding:4px 10px;border-radius:6px;
+}
+.pchip.has{
+  background:rgba(25,174,167,0.1);
+  color:var(--teal2);
+  border:1px solid rgba(25,174,167,0.2);
+}
+.pchip.hasnt{
+  background:rgba(224,91,91,0.07);
+  color:#F08080;
+  border:1px solid rgba(224,91,91,0.15);
+  text-decoration:line-through;
+  opacity:.7;
+}
+
+/* ── BUILD GUIDE ─────────────────────────────── */
+.build-steps{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:16px;
+}
+.build-step{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:22px 20px;
+  display:flex;gap:16px;
+  transition:border-color .2s;
+}
+.build-step:hover{border-color:rgba(200,168,75,0.3);}
+.build-step-num{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:var(--bg);font-size:14px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  font-family:'Tajawal',sans-serif;
+}
+.build-step-title{font-size:14px;font-weight:700;color:var(--gold2);margin-bottom:6px;}
+.build-step-text{font-size:12px;color:var(--muted);line-height:1.7;}
+
+/* ── WARNINGS ────────────────────────────────── */
+.warn-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:16px;
+}
+.warn-item{
+  background:rgba(224,91,91,0.05);
+  border:1px solid rgba(224,91,91,0.15);
+  border-radius:12px;
+  padding:20px;
+  display:flex;gap:14px;
+}
+.warn-num{
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(224,91,91,0.15);
+  color:var(--red2);font-size:13px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-family:'Tajawal',sans-serif;
+}
+.warn-title{font-size:13px;font-weight:700;color:var(--red2);margin-bottom:5px;}
+.warn-text{font-size:12px;color:var(--muted);line-height:1.7;}
+
+/* ── SUMMARY ─────────────────────────────────── */
+.summary-cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:14px;
+}
+.sum-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px;
+  text-align:center;
+}
+.sum-card-label{
+  font-size:13px;color:var(--muted);
+  margin-bottom:6px;
+}
+.sum-card-val{
+  font-family:'Tajawal',sans-serif;
+  font-size:15px;font-weight:700;
+  color:var(--gold2);
+  line-height:1.4;
+}
+
+/* ── 4 QUESTIONS BOX ─────────────────────────── */
+.q4-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;
+}
+.q4-item{
+  border-radius:12px;padding:20px;
+  display:flex;flex-direction:column;
+  gap:10px;
+}
+.q4-1{background:rgba(78,201,193,0.07);border:1px solid rgba(78,201,193,0.15);}
+.q4-2{background:rgba(61,184,120,0.07);border:1px solid rgba(61,184,120,0.15);}
+.q4-3{background:rgba(200,168,75,0.07);border:1px solid rgba(200,168,75,0.15);}
+.q4-4{background:rgba(224,91,91,0.07);border:1px solid rgba(224,91,91,0.15);}
+.q4-n{font-size:28px;font-family:'Tajawal',sans-serif;font-weight:900;}
+.q4-1 .q4-n{color:var(--sky);}
+.q4-2 .q4-n{color:var(--green);}
+.q4-3 .q4-n{color:var(--gold2);}
+.q4-4 .q4-n{color:var(--red2);}
+.q4-q{font-size:14px;font-weight:600;color:var(--off);}
+.q4-note{font-size:12px;color:var(--muted);line-height:1.6;}
+
+/* ── FOOTER ──────────────────────────────────── */
+.footer{
+  text-align:center;padding:40px;
+  border-top:1px solid var(--border);
+  color:var(--muted2);font-size:12px;letter-spacing:1px;
+}
+
+/* ── ALT BG ──────────────────────────────────── */
+.bg2{background:var(--bg2);}
+.bg3{background:var(--bg3);}
+
+/* responsive */
+@media(max-width:680px){
+  .wrap,.wrap-sm{padding:50px 20px;}
+  .nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .hero{padding:60px 24px 40px;}
+  .role-card-body{grid-template-columns:1fr;}
+  .role-col+.role-col{border-right:none;border-top:1px solid var(--border);}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">⚡ Royal Nano — دليل الصلاحيات</div>
+  <div class="nav-links">
+    <a href="#concept">المفهوم</a>
+    <a href="#crud">أنواع الصلاحيات</a>
+    <a href="#scope">النطاق</a>
+    <a href="#special">الصلاحيات الخاصة</a>
+    <a href="#roles">الأدوار</a>
+    <a href="#guide">كيف تبني وظيفة</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-tag">دليل الصلاحيات الشامل</div>
+  <h1>كيف يعمل نظام<br>الصلاحيات</h1>
+  <p class="hero-sub">
+    فهم طريقة عمل الصلاحيات يحوّل الإعداد من عملية مربكة إلى قرارات واضحة — هذا الدليل يشرح كل شيء بالتفاصيل والأمثلة
+  </p>
+  <div class="hero-pills">
+    <div class="hero-pill"><div class="hero-pill-dot" style="background:var(--gold)"></div>وظيفة كسقف</div>
+    <div class="hero-pill"><div class="hero-pill-dot" style="background:var(--teal)"></div>موظف كتخصيص</div>
+    <div class="hero-pill"><div class="hero-pill-dot" style="background:var(--purple)"></div>نطاق البيانات</div>
+    <div class="hero-pill"><div class="hero-pill-dot" style="background:var(--green)"></div>صلاحيات خاصة</div>
+    <div class="hero-pill"><div class="hero-pill-dot" style="background:var(--red)"></div>حماية البيانات الحساسة</div>
+  </div>
+</section>
+
+<!-- ══ SECTION 1: CONCEPT ══════════════════════ -->
+<section class="bg2" id="concept">
+<div class="wrap">
+  <div class="sh">
+    <div class="sh-tag">القسم الأول</div>
+    <h2>الفكرة الأساسية للنظام</h2>
+    <p>النظام لا يعمل بباقة صلاحيات ثابتة لكل وظيفة — بل يعمل بمستويين منفصلين يعطيان مرونة كاملة</p>
+  </div>
+
+  <div class="concept-visual">
+    <div class="concept-layers">
+
+      <div class="c-layer cl-1">
+        <div class="c-layer-label">🔐 حساب الدخول</div>
+        <div class="c-layer-body">
+          <span class="c-layer-icon">👤</span>
+          المستخدم — اسم الدخول وكلمة المرور، هوية الشخص داخل النظام
+        </div>
+      </div>
+      <div class="c-arrow">↓</div>
+
+      <div class="c-layer cl-2">
+        <div class="c-layer-label">🏷️ الوظيفة</div>
+        <div class="c-layer-body">
+          <span class="c-layer-icon">📋</span>
+          السقف الأعلى المسموح به — مثل: مندوب مبيعات، مدير فرع، محاسب. تحدد ما يمكن منحه لهذه الفئة
+        </div>
+      </div>
+      <div class="c-arrow">↓</div>
+
+      <div class="c-layer cl-3">
+        <div class="c-layer-label">⚙️ صلاحيات الموظف</div>
+        <div class="c-layer-body">
+          <span class="c-layer-icon">🎯</span>
+          الصلاحيات الفعلية المختارة لهذا الموظف تحديدًا — من داخل سقف الوظيفة فقط
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="rule-box">
+    <strong>النتيجة العملية:</strong> موظفان في نفس الوظيفة قد يكون لكل منهما صلاحيات مختلفة. إذا كانت الوظيفة تحتوي <strong>٢٠ صلاحية</strong>، فأحدهما يأخذ ٢٠ من ٢٠ والآخر يأخذ ٨ من ٢٠ — وهذا مقصود ومفيد ليعكس الدور الحقيقي لكل شخص داخل الشركة.
+  </div>
+
+  <div style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div style="background:rgba(200,168,75,0.07);border:1px solid rgba(200,168,75,0.2);border-radius:12px;padding:20px;">
+      <div style="font-size:12px;font-weight:700;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">حذف صلاحية من الوظيفة</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.8;">تُحذف تلقائيًا من <strong style="color:var(--off)">جميع الموظفين</strong> في هذه الوظيفة — لأن الوظيفة هي الحد الأقصى ولا يمكن تجاوزها</div>
+    </div>
+    <div style="background:rgba(25,174,167,0.07);border:1px solid rgba(25,174,167,0.2);border-radius:12px;padding:20px;">
+      <div style="font-size:12px;font-weight:700;color:var(--teal2);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">إضافة صلاحية للوظيفة</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.8;">تصبح <strong style="color:var(--off)">متاحة للمنح</strong> فقط — لا تُفعَّل تلقائيًا للجميع، يجب منحها لكل موظف بشكل فردي</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divline" style="max-width:1080px;"></div>
+
+<!-- ══ SECTION 2: CRUD ══════════════════════════ -->
+<section id="crud">
+<div class="wrap">
+  <div class="sh">
+    <div class="sh-tag">القسم الثاني</div>
+    <h2>الصلاحيات الأساسية الأربع</h2>
+    <p>غالبية الوحدات تعمل بهذه الصلاحيات الأربع — فهمها هو الأساس لكل إعداد</p>
+  </div>
+
+  <div class="crud-grid">
+    <div class="crud-card cc-view">
+      <div class="crud-card-icon">👁️</div>
+      <div class="crud-card-name">عرض</div>
+      <div class="crud-card-desc">رؤية البيانات، دخول الصفحة أو التبويب، مشاهدة الجداول والتفاصيل</div>
+    </div>
+    <div class="crud-card cc-add">
+      <div class="crud-card-icon">➕</div>
+      <div class="crud-card-name">إضافة</div>
+      <div class="crud-card-desc">إنشاء سجلات جديدة، ظهور زر الإضافة في الواجهة</div>
+    </div>
+    <div class="crud-card cc-change">
+      <div class="crud-card-icon">✏️</div>
+      <div class="crud-card-name">تعديل</div>
+      <div class="crud-card-desc">تعديل السجلات الموجودة، ظهور زر التعديل في الواجهة</div>
+    </div>
+    <div class="crud-card cc-delete">
+      <div class="crud-card-icon">🗑️</div>
+      <div class="crud-card-name">حذف</div>
+      <div class="crud-card-desc">حذف السجلات — صلاحية حساسة جدًا، تُمنح بحذر وللمسؤولين فقط</div>
+    </div>
+  </div>
+
+  <div class="ex-box">
+    <div class="ex-box-title">مثال عملي — موظف على وحدة العملاء</div>
+    <div class="ex-row">
+      <span class="ex-perm on">عرض_العميل ✓</span>
+      <span class="ex-row-result">يستطيع مشاهدة قائمة العملاء وتفاصيل كل عميل</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-perm on">إضافة_عميل ✓</span>
+      <span class="ex-row-result">يستطيع إنشاء عميل جديد في النظام</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-perm off">تعديل_عميل ✗</span>
+      <span class="ex-row-result">لا يستطيع تعديل بيانات عميل موجود — الزر لن يظهر له</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-perm off">حذف_عميل ✗</span>
+      <span class="ex-row-result">لا يستطيع حذف أي عميل — محمي تمامًا</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divline" style="max-width:1080px;"></div>
+
+<!-- ══ SECTION 3: SCOPE ════════════════════════ -->
+<section class="bg2" id="scope">
+<div class="wrap">
+  <div class="sh">
+    <div class="sh-tag">القسم الثالث</div>
+    <h2>نقطة مهمة جدًا — الصلاحية لا تكفي وحدها</h2>
+    <p>امتلاك صلاحية العرض لا يعني بالضرورة رؤية كل بيانات الشركة — النطاق هو الذي يحدد ماذا يرى الموظف فعليًا</p>
+  </div>
+
+  <div class="rule-box" style="margin-bottom:28px;">
+    قد يمتلك الموظف صلاحية <strong>عرض_العملاء</strong>، لكنه لن يرى كل العملاء في الشركة. بل سيرى فقط العملاء <strong>المسموح له برؤيتهم</strong> حسب دوره ومكانته في الهيكل الإداري. هذا سلوك صحيح ومقصود لحماية البيانات.
+  </div>
+
+  <div class="scope-grid">
+    <div class="scope-card sc-gold">
+      <div class="scope-card-title">👤 الموظف العادي</div>
+      <div class="scope-card-text">يرى العملاء المخصصين له شخصيًا فقط — العملاء الذين هو المسؤول المباشر عنهم</div>
+    </div>
+    <div class="scope-card sc-teal">
+      <div class="scope-card-title">👑 قائد الفريق</div>
+      <div class="scope-card-text">يرى عملاءه الشخصيين + عملاء الموظفين التابعين له كـ"قائد" في الهيكل الإداري</div>
+    </div>
+    <div class="scope-card sc-purple">
+      <div class="scope-card-title">🏢 مدير الفرع</div>
+      <div class="scope-card-text">يرى جميع عملاء الفرع الذي يديره — كل العملاء التابعين للفرع بغض النظر عن الموظف المسؤول</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divline" style="max-width:1080px;"></div>
+
+<!-- ══ SECTION 4: SPECIAL PERMS ════════════════ -->
+<section id="special">
+<div class="wrap">
+  <div class="sh">
+    <div class="sh-tag">القسم الرابع</div>
+    <h2>الصلاحيات الخاصة المهمة</h2>
+    <p>هذه الصلاحيات لا تتعلق بعرض أو إضافة أو تعديل عادي — بل تتحكم في بيانات حساسة أو اعتمادات مؤثرة</p>
+  </div>
+
+  <div class="sp-grid">
+
+    <!-- 1 -->
+    <div class="sp-card" onclick="toggleSP(this)">
+      <div class="sp-header">
+        <span class="sp-icon">📞</span>
+        <div class="sp-title-wrap">
+          <div class="sp-code">رؤية رقم هاتف العميل</div>
+          <div class="sp-name">رؤية رقم هاتف العميل</div>
+        </div>
+        <span class="sp-toggle">▾</span>
+      </div>
+      <div class="sp-body">
+        <div class="sp-body-inner">
+          <div class="sp-mini with-it">
+            <div class="sp-mini-title">✓ مع الصلاحية</div>
+            <ul>
+              <li>رؤية الرقم الأساسي والأرقام الإضافية</li>
+              <li>ظهور الرقم في الجداول وصفحة التفاصيل</li>
+              <li>رؤية الرقم ضمن بيانات العميل المكررة</li>
+            </ul>
+          </div>
+          <div class="sp-mini without-it">
+            <div class="sp-mini-title">✗ بدون الصلاحية</div>
+            <ul>
+              <li>الاسم وبقية البيانات مرئية</li>
+              <li>أرقام الهاتف مخفية تمامًا</li>
+              <li>لا يمكن رؤية أي رقم تواصل</li>
+            </ul>
+          </div>
+          <div class="sp-who">
+            <div class="sp-who-title">من يحتاجها؟</div>
+            <div class="sp-who-chips">
+              <span class="sp-chip yes">✓ مندوب مبيعات يتواصل مع العميل</span>
+              <span class="sp-chip yes">✓ قائد فريق يتابع مع العملاء</span>
+              <span class="sp-chip yes">✓ مدير الفرع</span>
+              <span class="sp-chip no">✗ موظف إدخال بيانات</span>
+              <span class="sp-chip no">✗ فني تنفيذ لا يتواصل مع العميل</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="sp-card" onclick="toggleSP(this)">
+      <div class="sp-header">
+        <span class="sp-icon">🗂️</span>
+        <div class="sp-title-wrap">
+          <div class="sp-code">رؤية البيانات المكررة للعملاء</div>
+          <div class="sp-name">رؤية البيانات المكررة والتاريخ المؤرشف للعملاء</div>
+        </div>
+        <span class="sp-toggle">▾</span>
+      </div>
+      <div class="sp-body">
+        <div class="sp-body-inner">
+          <div class="sp-mini with-it">
+            <div class="sp-mini-title">✓ مع الصلاحية</div>
+            <ul>
+              <li>ظهور تبويب بيانات العملاء المكررة</li>
+              <li>رؤية السجل التاريخي عند استبدال البيانات</li>
+              <li>مشاهدة النسخ المؤرشفة القديمة للعميل</li>
+            </ul>
+          </div>
+          <div class="sp-mini without-it">
+            <div class="sp-mini-title">✗ بدون الصلاحية</div>
+            <ul>
+              <li>يرى العميل الحالي فقط</li>
+              <li>التاريخ القديم والنسخ المؤرشفة مخفية</li>
+            </ul>
+          </div>
+          <div class="sp-who">
+            <div class="sp-who-title">من يحتاجها؟</div>
+            <div class="sp-who-chips">
+              <span class="sp-chip yes">✓ مدير الفرع</span>
+              <span class="sp-chip yes">✓ مدير المبيعات</span>
+              <span class="sp-chip yes">✓ مسؤول تدقيق البيانات</span>
+              <span class="sp-chip no">✗ موظف مبيعات عادي</span>
+              <span class="sp-chip no">✗ منفذ المهام</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="sp-card" onclick="toggleSP(this)">
+      <div class="sp-header">
+        <span class="sp-icon">💰</span>
+        <div class="sp-title-wrap">
+          <div class="sp-code">رؤية أسعار العناصر المستهلكة</div>
+          <div class="sp-name">رؤية أسعار العناصر المستهلكة</div>
+        </div>
+        <span class="sp-toggle">▾</span>
+      </div>
+      <div class="sp-body">
+        <div class="sp-body-inner">
+          <div class="sp-mini with-it">
+            <div class="sp-mini-title">✓ مع الصلاحية</div>
+            <ul>
+              <li>رؤية سعر العنصر داخل فاتورة المبيعات</li>
+              <li>رؤية إجمالي تكلفة الاستهلاك</li>
+            </ul>
+          </div>
+          <div class="sp-mini without-it">
+            <div class="sp-mini-title">✗ بدون الصلاحية</div>
+            <ul>
+              <li>العنصر والكمية مرئيان</li>
+              <li>السعر والتكلفة مخفيان تمامًا</li>
+            </ul>
+          </div>
+          <div class="sp-who">
+            <div class="sp-who-title">من يحتاجها؟</div>
+            <div class="sp-who-chips">
+              <span class="sp-chip yes">✓ مدير الفرع (لمراجعة التكاليف)</span>
+              <span class="sp-chip yes">✓ مدير مالي أو محاسب</span>
+              <span class="sp-chip no">✗ فني أو منفذ مهمة</span>
+              <span class="sp-chip no">✗ مندوب مبيعات لا علاقة له بالتسعير</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="sp-card" onclick="toggleSP(this)">
+      <div class="sp-header">
+        <span class="sp-icon">✅</span>
+        <div class="sp-title-wrap">
+          <div class="sp-code">تأكيد فاتورة المبيعات</div>
+          <div class="sp-name">تأكيد فاتورة المبيعات</div>
+        </div>
+        <span class="sp-toggle">▾</span>
+      </div>
+      <div class="sp-body">
+        <div class="sp-body-inner">
+          <div class="sp-mini with-it">
+            <div class="sp-mini-title">✓ مع الصلاحية</div>
+            <ul>
+              <li>تأكيد الفاتورة بعد مراجعة الاستهلاك</li>
+              <li>خصم العناصر من المخزون تلقائيًا عند التأكيد</li>
+            </ul>
+          </div>
+          <div class="sp-mini without-it">
+            <div class="sp-mini-title">✗ بدون الصلاحية</div>
+            <ul>
+              <li>لا يستطيع تأكيد الفاتورة</li>
+              <li>المخزون لا يتأثر</li>
+              <li>ملاحظة: مدير الفرع قد يؤكد بحكم دوره</li>
+            </ul>
+          </div>
+          <div class="sp-who">
+            <div class="sp-who-title">من يحتاجها؟</div>
+            <div class="sp-who-chips">
+              <span class="sp-chip yes">✓ مدير الفرع</span>
+              <span class="sp-chip yes">✓ مدير المبيعات</span>
+              <span class="sp-chip yes">✓ مسؤول اعتماد المخزون</span>
+              <span class="sp-chip no">✗ موظف مبيعات عادي</span>
+              <span class="sp-chip no">✗ فني أو منفذ مهمة</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="sp-card" onclick="toggleSP(this)">
+      <div class="sp-header">
+        <span class="sp-icon">🔄</span>
+        <div class="sp-title-wrap">
+          <div class="sp-code">العناصر المستهلكة للمهمة <span style="color:var(--muted)">مقابل</span> العناصر المستهلكة في الفاتورة</div>
+          <div class="sp-name">الفرق بين استهلاك المهمة واستهلاك الفاتورة</div>
+        </div>
+        <span class="sp-toggle">▾</span>
+      </div>
+      <div class="sp-body">
+        <div class="sp-body-inner">
+          <div class="sp-mini" style="background:rgba(123,104,238,0.07);border:1px solid rgba(123,104,238,0.2);">
+            <div class="sp-mini-title" style="color:#9C8FFF;">📋 داخل المهمة</div>
+            <ul>
+              <li style="color:var(--muted);">تسجيل التنفيذ الميداني</li>
+              <li style="color:var(--muted);">استهلاك مؤقت أثناء العمل</li>
+              <li style="color:var(--muted);">لا يؤثر على المخزون مباشرة</li>
+            <li style="color:var(--muted);">الصلاحية المطلوبة: عرض العناصر المستهلكة للمهمة</li>
+            </ul>
+          </div>
+          <div class="sp-mini" style="background:rgba(255,140,66,0.07);border:1px solid rgba(255,140,66,0.2);">
+            <div class="sp-mini-title" style="color:#FFAB6E;">🧾 داخل الفاتورة</div>
+            <ul>
+              <li style="color:var(--muted);">الاستهلاك النهائي المعتمد</li>
+              <li style="color:var(--muted);">يؤثر على المخزون عند التأكيد</li>
+              <li style="color:var(--muted);">يحتاج مراجعة واعتمادًا</li>
+              <li style="color:var(--muted);">صلاحية: sales.view_consumeditem</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<div class="divline" style="max-width:1080px;"></div>
+
+<!-- ══ SECTION 5: ROLES ════════════════════════ -->
+<section class="bg2" id="roles">
+<div class="wrap">
+  <div class="sh">
+    <div class="sh-tag">القسم الخامس</div>
+    <h2>أمثلة عملية على الأدوار</h2>
+    <p>كيف تبدو الصلاحيات لكل دور وظيفي — نقطة بداية ممتازة لإعداد وظائف مناسبة لشركتك</p>
+  </div>
+
+  <div class="role-tabs">
+    <div class="rtab active" style="background:linear-gradient(135deg,var(--teal),var(--teal2));border-color:transparent;color:#0a0a0a;" onclick="switchRole(this,'r1')">
+      <span class="rtab-icon">🤝</span> مندوب مبيعات
+    </div>
+    <div class="rtab" onclick="switchRole(this,'r2')">
+      <span class="rtab-icon">👑</span> قائد فريق
+    </div>
+    <div class="rtab" onclick="switchRole(this,'r3')">
+      <span class="rtab-icon">🏢</span> مدير فرع
+    </div>
+    <div class="rtab" onclick="switchRole(this,'r4')">
+      <span class="rtab-icon">💼</span> محاسب
+    </div>
+    <div class="rtab" onclick="switchRole(this,'r5')">
+      <span class="rtab-icon">⚙️</span> فني / منفذ
+    </div>
+    <div class="rtab" onclick="switchRole(this,'r6')">
+      <span class="rtab-icon">👥</span> موارد بشرية
+    </div>
+  </div>
+
+  <!-- R1: Sales Rep -->
+  <div class="role-panel active" id="r1">
+    <div class="role-card-wrap">
+      <div class="role-card-header">
+        <div class="role-big-icon" style="background:linear-gradient(135deg,var(--teal),var(--teal2));">🤝</div>
+        <div>
+          <div class="role-card-title">مندوب المبيعات</div>
+          <div class="role-card-sub">يتابع العملاء، ينشئ عروض الأسعار، يدير التواصل اليومي</div>
+        </div>
+      </div>
+      <div class="role-card-body">
+        <div class="role-col">
+          <div class="role-col-title" style="color:var(--green);">✓ ما يحتاجه</div>
+          <ul class="role-perm-list">
+            <li class="rp-has"><div class="rp-dot"></div>رؤية وإضافة وتعديل العملاء التابعين له</li>
+            <li class="rp-has"><div class="rp-dot"></div>رؤية وإضافة وتعديل المتابعات</li>
+            <li class="rp-has"><div class="rp-dot"></div>رؤية وإضافة وتعديل عروض الأسعار</li>
+            <li class="rp-has"><div class="rp-dot"></div>رؤية فواتير المبيعات الخاصة بعملائه</li>
+            <li class="rp-has"><div class="rp-dot"></div>رؤية رقم هاتف العميل (إذا يتواصل معه)</li>
+          </ul>
+        </div>
+        <div class="role-col">
+          <div class="role-col-title" style="color:var(--red2);">✗ ما لا يحتاجه</div>
+          <ul class="role-perm-list">
+            <li class="rp-hasnt"><div class="rp-dot"></div>حذف العملاء أو العروض أو الفواتير</li>
+            <li class="rp-hasnt"><div class="rp-dot"></div>رؤية البيانات المكررة للعملاء</li>
+            <li class="rp-hasnt"><div class="rp-dot"></div>تأكيد فاتورة المبيعات</li>
+            <li class="rp-hasnt"><div class="rp-dot"></div>رؤية أسعار العناصر المستهلكة</li>
+            <li class="rp-hasnt"><div class="rp-dot"></div>إدارة الحسابات أو طرق الدفع</li>
+          </ul>
+        </div>
+      </div>
+      <div class="role-code-section">
+        <div class="role-code-title">الصلاحيات المقترحة</div>
+            <div class="perm-chips">
+              <span class="pchip has">عرض العملاء</span>
+              <span class="pchip has">إضافة عميل</span>
+              <span class="pchip has">تعديل عميل</span>
+              <span class="pchip has">عرض المتابعات</span>
+              <span class="pchip has">إضافة متابعة</span>
+              <span class="pchip has">تعديل متابعة</span>
+              <span class="pchip has">عرض عروض الأسعار</span>
+              <span class="pchip has">إضافة عرض سعر</span>
+              <span class="pchip has">تعديل عرض سعر</span>
+              <span class="pchip has">عرض فواتير المبيعات</span>
+              <span class="pchip hasnt">تأكيد فاتورة المبيعات</span>
+              <span class="pchip hasnt">رؤية البيانات المكررة للعملاء</span>
+              <span class="pchip hasnt">رؤية أسعار العناصر المستهلكة</span>
+            </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- R2: Team Leader -->
+  <div class="role-panel" id="r2">
+    <div class="role-card-wrap">
+      <div class="role-card-header">
+        <div class="role-big-icon" style="background:linear-gradient(135deg,var(--gold),var(--gold2));">👑</div>
+        <div>
+          <div class="role-card-title">قائد الفريق</div>
+          <div class="role-card-sub">يتابع عملاءه + عملاء وأداء فريقه كاملًا</div>
+        </div>
+      </div>
+      <div class="role-card-body">
+        <div class="role-col">
+          <div class="role-col-title" style="color:var(--green);">✓ ما يحتاجه</div>
+          <ul class="role-perm-list">
+            <li class="rp-has"><div class="rp-dot"></div>كل صلاحيات مندوب المبيعات</li>
+            <li class="rp-has"><div class="rp-dot"></div>متابعة عروض أسعار وفواتير فريقه</li>
+            <li class="rp-has"><div class="rp-dot"></div>رؤية عملاء الموظفين التابعين له</li>
+            <li class="rp-has"><div class="rp-dot"></div>رؤية رقم هاتف العميل (للمتابعة المباشرة)</li>
+          </ul>
+        </div>
+        <div class="role-col">
+          <div class="role-col-title" style="color:var(--muted);">↕ يعتمد على السياسة</div>
+          <ul class="role-perm-list">
+            <li class="rp-has"><div class="rp-dot" style="background:var(--gold)"></div>رؤية أسعار الاستهلاك — إذا يراجع الأداء المالي</li>
+            <li class="rp-hasnt"><div class="rp-dot"></div>رؤية أسعار الاستهلاك — إذا دوره تشغيلي فقط</li>
+            <li class="rp-hasnt"><div class="rp-dot"></div>تأكيد الفاتورة — غالبًا يبقى لمدير الفرع</li>
+          </ul>
+        </div>
+      </div>
+      <div class="role-code-section">
+        <div class="role-code-title">الصلاحيات المقترحة (إضافة على مندوب المبيعات)</div>
+            <div class="perm-chips">
+              <span class="pchip has">رؤية رقم هاتف العميل</span>
+              <span class="pchip has">عرض عروض الأسعار الخاصة بالفريق</span>
+              <span class="pchip has">عرض فواتير المبيعات الخاصة بالفريق</span>
+            </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- R3: Branch Manager -->
+  <div class="role-panel" id="r3">
+    <div class="role-card-wrap">
+      <div class="role-card-header">
+        <div class="role-big-icon" style="background:linear-gradient(135deg,var(--purple),#9C8FFF);">🏢</div>
+        <div>
+          <div class="role-card-title">مدير الفرع</div>
+          <div class="role-card-sub">صلاحيات واسعة على مستوى الفرع كاملًا</div>
+        </div>
+      </div>
+      <div class="role-card-body">
+        <div class="role-col">
+          <div class="role-col-title" style="color:var(--green);">✓ ما يحتاجه</div>
+          <ul class="role-perm-list">
+            <li class="rp-has"><div class="rp-dot"></div>رؤية وتعديل كل عملاء الفرع</li>
+            <li class="rp-has"><div class="rp-dot"></div>رؤية الأرقام والبيانات المكررة</li>
+            <li class="rp-has"><div class="rp-dot"></div>رؤية وتعديل عروض الأسعار والفواتير</li>
+            <li class="rp-has"><div class="rp-dot"></div>رؤية وتعديل العناصر المستهلكة</li>
+            <li class="rp-has"><div class="rp-dot"></div>رؤية أسعار العناصر المستهلكة</li>
+            <li class="rp-has"><div class="rp-dot"></div>تأكيد فواتير المبيعات</li>
+          </ul>
+        </div>
+        <div class="role-col">
+          <div class="role-col-title" style="color:var(--red2);">✗ ما يتجاوز صلاحياته عادةً</div>
+          <ul class="role-perm-list">
+            <li class="rp-hasnt"><div class="rp-dot"></div>إعدادات النظام والهيكل الإداري</li>
+            <li class="rp-hasnt"><div class="rp-dot"></div>تشغيل الرواتب (مسؤول HR)</li>
+            <li class="rp-hasnt"><div class="rp-dot"></div>الإعدادات المالية العامة</li>
+          </ul>
+        </div>
+      </div>
+      <div class="role-code-section">
+        <div class="role-code-title">الصلاحيات الأساسية</div>
+            <div class="perm-chips">
+              <span class="pchip has">عرض العملاء</span>
+              <span class="pchip has">تعديل العملاء</span>
+              <span class="pchip has">رؤية رقم هاتف العميل</span>
+              <span class="pchip has">رؤية البيانات المكررة للعملاء</span>
+              <span class="pchip has">عرض المتابعات</span>
+              <span class="pchip has">عرض عروض الأسعار</span>
+              <span class="pchip has">عرض فواتير المبيعات</span>
+              <span class="pchip has">تعديل فواتير المبيعات</span>
+              <span class="pchip has">عرض العناصر المستهلكة في الفاتورة</span>
+              <span class="pchip has">تعديل العناصر المستهلكة في الفاتورة</span>
+            </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- R4: Accountant -->
+  <div class="role-panel" id="r4">
+    <div class="role-card-wrap">
+      <div class="role-card-header">
+        <div class="role-big-icon" style="background:linear-gradient(135deg,var(--green),#6ECFA0);">💼</div>
+        <div>
+          <div class="role-card-title">المحاسب / مسؤول المالية</div>
+          <div class="role-card-sub">يدير الحسابات والقيود والإيصالات المالية</div>
+        </div>
+      </div>
+      <div class="role-card-body">
+        <div class="role-col">
+          <div class="role-col-title" style="color:var(--green);">✓ ما يحتاجه</div>
+          <ul class="role-perm-list">
+            <li class="rp-has"><div class="rp-dot"></div>الحسابات المالية (عرض، إضافة، تعديل)</li>
+            <li class="rp-has"><div class="rp-dot"></div>إيصالات الاستلام والدفع</li>
+            <li class="rp-has"><div class="rp-dot"></div>القيود المحاسبية</li>
+            <li class="rp-has"><div class="rp-dot"></div>أنواع الضرائب والإعدادات المالية</li>
+            <li class="rp-has"><div class="rp-dot"></div>طرق الدفع</li>
+            <li class="rp-has"><div class="rp-dot"></div>رؤية الفواتير للمتابعة المالية</li>
+          </ul>
+        </div>
+        <div class="role-col">
+          <div class="role-col-title" style="color:var(--red2);">✗ ما لا يحتاجه</div>
+          <ul class="role-perm-list">
+            <li class="rp-hasnt"><div class="rp-dot"></div>إدارة المتابعات اليومية للعملاء</li>
+            <li class="rp-hasnt"><div class="rp-dot"></div>مهام التنفيذ الميدانية</li>
+            <li class="rp-hasnt"><div class="rp-dot"></div>سجلات فنية لا صلة لها بالمالية</li>
+          </ul>
+        </div>
+      </div>
+      <div class="role-code-section">
+        <div class="role-code-title">الصلاحيات الأساسية</div>
+            <div class="perm-chips">
+              <span class="pchip has">عرض الحسابات</span>
+              <span class="pchip has">إضافة حساب</span>
+              <span class="pchip has">عرض إيصالات الاستلام</span>
+              <span class="pchip has">إضافة إيصال استلام</span>
+              <span class="pchip has">عرض إيصالات الدفع</span>
+              <span class="pchip has">إضافة إيصال دفع</span>
+              <span class="pchip has">عرض طرق الدفع</span>
+              <span class="pchip has">عرض القيود المحاسبية</span>
+              <span class="pchip has">عرض الإعدادات المالية</span>
+              <span class="pchip has">عرض فواتير المبيعات</span>
+            </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- R5: Technician -->
+  <div class="role-panel" id="r5">
+    <div class="role-card-wrap">
+      <div class="role-card-header">
+        <div class="role-big-icon" style="background:linear-gradient(135deg,var(--orange),#FFAB6E);">⚙️</div>
+        <div>
+          <div class="role-card-title">الفني / منفذ المهام</div>
+          <div class="role-card-sub">ينفذ المهام الميدانية ويسجل الاستهلاك</div>
+        </div>
+      </div>
+      <div class="role-card-body">
+        <div class="role-col">
+          <div class="role-col-title" style="color:var(--green);">✓ ما يحتاجه</div>
+          <ul class="role-perm-list">
+            <li class="rp-has"><div class="rp-dot"></div>رؤية وتحديث المهام المسندة إليه</li>
+            <li class="rp-has"><div class="rp-dot"></div>رؤية تعيينات المهام</li>
+            <li class="rp-has"><div class="rp-dot"></div>إضافة تعليقات ومرفقات على المهمة</li>
+            <li class="rp-has"><div class="rp-dot"></div>تسجيل العناصر المستهلكة داخل المهمة</li>
+          </ul>
+        </div>
+        <div class="role-col">
+          <div class="role-col-title" style="color:var(--red2);">✗ ما لا يحتاجه</div>
+          <ul class="role-perm-list">
+            <li class="rp-hasnt"><div class="rp-dot"></div>رؤية كل العملاء في النظام</li>
+            <li class="rp-hasnt"><div class="rp-dot"></div>رؤية أسعار العناصر المستهلكة</li>
+            <li class="rp-hasnt"><div class="rp-dot"></div>تأكيد فواتير المبيعات</li>
+            <li class="rp-hasnt"><div class="rp-dot"></div>إدارة المخزون أو الحسابات</li>
+          </ul>
+        </div>
+      </div>
+      <div class="role-code-section">
+        <div class="role-code-title">الصلاحيات الأساسية</div>
+            <div class="perm-chips">
+              <span class="pchip has">عرض المهام</span>
+              <span class="pchip has">تعديل المهمة</span>
+              <span class="pchip has">عرض تخصيصات المهام</span>
+              <span class="pchip has">عرض تعليقات المهام</span>
+              <span class="pchip has">إضافة تعليق على المهمة</span>
+              <span class="pchip has">عرض مرفقات المهام</span>
+              <span class="pchip has">إضافة مرفق للمهمة</span>
+              <span class="pchip has">عرض العناصر المستهلكة للمهمة</span>
+              <span class="pchip has">إضافة عنصر مستهلك للمهمة</span>
+              <span class="pchip has">تعديل عنصر مستهلك للمهمة</span>
+              <span class="pchip hasnt">رؤية أسعار العناصر المستهلكة</span>
+              <span class="pchip hasnt">تأكيد فاتورة المبيعات</span>
+            </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- R6: HR -->
+  <div class="role-panel" id="r6">
+    <div class="role-card-wrap">
+      <div class="role-card-header">
+        <div class="role-big-icon" style="background:linear-gradient(135deg,#E05B5B,#F08080);">👥</div>
+        <div>
+          <div class="role-card-title">مسؤول الموارد البشرية</div>
+          <div class="role-card-sub">يدير الموظفين والحضور والإجازات والرواتب</div>
+        </div>
+      </div>
+      <div class="role-card-body">
+        <div class="role-col">
+          <div class="role-col-title" style="color:var(--green);">✓ ما يحتاجه</div>
+          <ul class="role-perm-list">
+            <li class="rp-has"><div class="rp-dot"></div>الموظفون — الأقسام — الوظائف</li>
+            <li class="rp-has"><div class="rp-dot"></div>الإجازات والحضور والانصراف</li>
+            <li class="rp-has"><div class="rp-dot"></div>سياسات الحضور والعطلات الرسمية</li>
+            <li class="rp-has"><div class="rp-dot"></div>تشغيل الرواتب الشهرية</li>
+            <li class="rp-has"><div class="rp-dot"></div>المكافآت والخصومات والمسابقات</li>
+          </ul>
+        </div>
+        <div class="role-col">
+          <div class="role-col-title" style="color:var(--red2);">✗ ما لا يحتاجه</div>
+          <ul class="role-perm-list">
+            <li class="rp-hasnt"><div class="rp-dot"></div>صلاحيات مبيعات تفصيلية</li>
+            <li class="rp-hasnt"><div class="rp-dot"></div>أسعار العناصر المستهلكة</li>
+            <li class="rp-hasnt"><div class="rp-dot"></div>تأكيد فواتير المبيعات</li>
+          </ul>
+        </div>
+      </div>
+      <div class="role-code-section">
+        <div class="role-code-title">الصلاحيات الأساسية</div>
+            <div class="perm-chips">
+              <span class="pchip has">عرض الموظفين</span>
+              <span class="pchip has">إضافة موظف</span>
+              <span class="pchip has">تعديل موظف</span>
+              <span class="pchip has">عرض الوظائف</span>
+              <span class="pchip has">عرض الأقسام</span>
+              <span class="pchip has">عرض طلبات الإجازة</span>
+              <span class="pchip has">عرض الحضور والانصراف</span>
+              <span class="pchip has">عرض سياسات الحضور</span>
+              <span class="pchip has">عرض العطلات الرسمية</span>
+              <span class="pchip has">عرض تشغيل الرواتب</span>
+              <span class="pchip has">إضافة تشغيل رواتب</span>
+              <span class="pchip has">عرض المكافآت والخصومات</span>
+              <span class="pchip has">عرض المسابقات</span>
+            </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<div class="divline" style="max-width:1080px;"></div>
+
+<!-- ══ SECTION 6: BUILD GUIDE ══════════════════ -->
+<section id="guide">
+<div class="wrap">
+  <div class="sh">
+    <div class="sh-tag">القسم السادس</div>
+    <h2>كيف تبني وظيفة صحيحة</h2>
+    <p>الطريقة الصحيحة لإعداد وظيفة وتخصيص صلاحياتها بدقة</p>
+  </div>
+
+  <div class="build-steps" style="margin-bottom:48px;">
+    <div class="build-step">
+      <div class="build-step-num">١</div>
+      <div>
+        <div class="build-step-title">أنشئ الوظيفة</div>
+        <div class="build-step-text">حدد اسمها ووصفها ومسؤولياتها الأساسية</div>
+      </div>
+    </div>
+    <div class="build-step">
+      <div class="build-step-num">٢</div>
+      <div>
+        <div class="build-step-title">ضع السقف الأعلى</div>
+        <div class="build-step-text">أضف للوظيفة كل الصلاحيات التي يمكن أن يحتاجها أصحابها</div>
+      </div>
+    </div>
+    <div class="build-step">
+      <div class="build-step-num">٣</div>
+      <div>
+        <div class="build-step-title">أنشئ الموظف</div>
+        <div class="build-step-text">اربطه بالوظيفة والفرع والقسم المناسب</div>
+      </div>
+    </div>
+    <div class="build-step">
+      <div class="build-step-num">٤</div>
+      <div>
+        <div class="build-step-title">خصص بدقة</div>
+        <div class="build-step-text">من داخل سقف الوظيفة، اختر الصلاحيات الفعلية التي يحتاجها هذا الموظف فقط</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh" style="margin-bottom:32px;">
+    <h2 style="font-size:24px;">الأسئلة الأربعة قبل منح أي صلاحية</h2>
+  </div>
+
+  <div class="q4-grid">
+    <div class="q4-item q4-1">
+      <div class="q4-n">١</div>
+      <div class="q4-q">هل يحتاج أن يرى هذا الجزء أصلًا؟</div>
+      <div class="q4-note">إذا لا علاقة لعمله به، فلا تمنح حتى صلاحية العرض</div>
+    </div>
+    <div class="q4-item q4-2">
+      <div class="q4-n">٢</div>
+      <div class="q4-q">هل يحتاج إنشاء سجلات جديدة؟</div>
+      <div class="q4-note">منح الإضافة فقط لمن يحتاج فعلًا إنشاء البيانات</div>
+    </div>
+    <div class="q4-item q4-3">
+      <div class="q4-n">٣</div>
+      <div class="q4-q">هل يحتاج تعديل البيانات الموجودة؟</div>
+      <div class="q4-note">التعديل يحتاج تبريرًا واضحًا — ليس الجميع يحتاجه</div>
+    </div>
+    <div class="q4-item q4-4">
+      <div class="q4-n">٤</div>
+      <div class="q4-q">هل يحتوي هذا الجزء بيانات حساسة أو اعتماد نهائي؟</div>
+      <div class="q4-note">إذا نعم — لا تمنح إلا عند وجود حاجة حقيقية وواضحة</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divline" style="max-width:1080px;"></div>
+
+<!-- ══ SECTION 7: WARNINGS ══════════════════════ -->
+<section class="bg2">
+<div class="wrap">
+  <div class="sh">
+    <div class="sh-tag">القسم السابع</div>
+    <h2>أخطاء شائعة يجب تجنبها</h2>
+  </div>
+
+  <div class="warn-grid">
+    <div class="warn-item">
+      <div class="warn-num">١</div>
+      <div>
+        <div class="warn-title">إعطاء كل صلاحيات الوظيفة لكل الموظفين</div>
+        <div class="warn-text">الوظيفة قد تكون عامة، لكن كل موظف له مسؤولية مختلفة — التخصيص الفردي هو الصواب</div>
+      </div>
+    </div>
+    <div class="warn-item">
+      <div class="warn-num">٢</div>
+      <div>
+        <div class="warn-title">منح صلاحية الحذف بكثرة</div>
+        <div class="warn-text">الحذف من أخطر الصلاحيات — يجب أن يبقى محدودًا جدًا للمسؤولين فقط</div>
+      </div>
+    </div>
+    <div class="warn-item">
+      <div class="warn-num">٣</div>
+      <div>
+        <div class="warn-title">منح الصلاحيات الحساسة لمن لا يحتاجها</div>
+        <div class="warn-text">رؤية الهاتف، الأسعار، تأكيد الفواتير — هذه بيانات حساسة تكشف معلومات سرية</div>
+      </div>
+    </div>
+    <div class="warn-item">
+      <div class="warn-num">٤</div>
+      <div>
+        <div class="warn-title">الاعتقاد أن "عرض" تعني رؤية كل شيء</div>
+        <div class="warn-text">صلاحية العرض تسمح بالرؤية داخل النطاق المسموح فقط — وليس كل بيانات الشركة</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divline" style="max-width:1080px;"></div>
+
+<!-- ══ SUMMARY ══════════════════════════════════ -->
+<section>
+<div class="wrap-sm">
+  <div class="sh" style="text-align:center;">
+    <div class="sh-tag" style="margin:0 auto 14px;">الخلاصة</div>
+    <h2>جملة واحدة تلخص كل شيء</h2>
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(200,168,75,0.1),rgba(25,174,167,0.07));border:1px solid rgba(200,168,75,0.25);border-radius:20px;padding:36px 40px;text-align:center;margin-bottom:40px;">
+    <p style="font-family:'Tajawal',sans-serif;font-size:18px;font-weight:600;color:var(--off);line-height:2;">
+      النظام لا يربط الموظف بباقة صلاحيات ثابتة، بل يربطه بـ<strong style="color:var(--gold2)">وظيفة كإطار عام</strong>، ثم يسمح بتخصيص صلاحياته الفعلية بدقة حسب <strong style="color:var(--teal2)">دوره الحقيقي</strong> داخل الشركة
+    </p>
+  </div>
+
+  <div class="summary-cards">
+    <div class="sum-card">
+      <div class="sum-card-label">الوظيفة</div>
+      <div class="sum-card-val">سقف الصلاحيات<br>المسموح به</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-card-label">الموظف</div>
+      <div class="sum-card-val">الصلاحيات الفعلية<br>المختارة من داخل السقف</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-card-label">صلاحية العرض</div>
+      <div class="sum-card-val">لا تعني رؤية<br>كل بيانات الشركة</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-card-label">النطاق</div>
+      <div class="sum-card-val">يحدد أي بيانات<br>تظهر فعليًا</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-card-label">الصلاحيات الخاصة</div>
+      <div class="sum-card-val">تحكم في بيانات حساسة<br>أو اعتمادات مهمة</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="footer">
+  <div style="font-size:22px;margin-bottom:10px;color:var(--gold);">◆</div>
+  دليل الصلاحيات — Royal Nano — تحديث أبريل ٢٠٢٦
+</div>
+
+<script>
+function toggleSP(card) {
+  const body = card.querySelector('.sp-body');
+  const toggle = card.querySelector('.sp-toggle');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  toggle.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+}
+
+function switchRole(tab, panelId) {
+  // tabs
+  document.querySelectorAll('.rtab').forEach(t => {
+    t.classList.remove('active');
+    t.style.background = '';
+    t.style.color = '';
+    t.style.borderColor = '';
+  });
+  tab.classList.add('active');
+  tab.style.background = 'linear-gradient(135deg,var(--teal),var(--teal2))';
+  tab.style.color = '#0a0a0a';
+  tab.style.borderColor = 'transparent';
+
+  // panels
+  document.querySelectorAll('.role-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(panelId).classList.add('active');
+}
+</script>
+</body>
+</html>
