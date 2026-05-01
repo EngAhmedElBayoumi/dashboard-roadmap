@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المرجع الشامل للصلاحيات — Royal Nano</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #080F18;
+  --bg2:     #0C1620;
+  --bg3:     #111E2B;
+  --panel:   rgba(255,255,255,0.04);
+  --border:  rgba(255,255,255,0.07);
+  --gold:    #C8A84B;
+  --gold2:   #E5CC7A;
+  --golddim: rgba(200,168,75,0.1);
+  --teal:    #19AEA7;
+  --teal2:   #22D6CD;
+  --green:   #3DB878;
+  --red:     #E05B5B;
+  --red2:    #F08080;
+  --purple:  #7B68EE;
+  --orange:  #FF8C42;
+  --sky:     #4EC9C1;
+  --white:   #FFFFFF;
+  --off:     #EDE9E0;
+  --muted:   #7A8FA6;
+  --muted2:  #4A5E72;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--white);direction:rtl;line-height:1.7;overflow-x:hidden;}
+
+/* ── TOP NAV ─────────────────────────────────── */
+.topnav{
+  position:sticky;top:0;z-index:200;
+  height:54px;
+  background:rgba(8,15,24,0.95);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;
+  padding:0 32px;gap:24px;
+}
+.topnav-logo{
+  font-family:'Tajawal',sans-serif;font-size:14px;font-weight:800;
+  color:var(--gold2);white-space:nowrap;
+}
+.topnav-sep{color:var(--muted2);font-size:18px;}
+.search-wrap{
+  flex:1;max-width:360px;position:relative;
+}
+.search-wrap input{
+  width:100%;height:34px;
+  background:var(--panel);
+  border:1px solid var(--border);border-radius:20px;
+  color:var(--white);font-family:'Cairo',sans-serif;font-size:13px;
+  padding:0 14px 0 36px;
+  outline:none;transition:border-color .2s;
+  direction:rtl;
+}
+.search-wrap input:focus{border-color:var(--gold);}
+.search-wrap input::placeholder{color:var(--muted2);}
+.search-icon{
+  position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  font-size:14px;color:var(--muted2);pointer-events:none;
+}
+.topnav-tabs{display:flex;gap:4px;margin-right:auto;}
+.tnav{
+  font-size:12px;color:var(--muted);
+  padding:5px 12px;border-radius:16px;
+  border:1px solid transparent;
+  cursor:pointer;transition:all .2s;white-space:nowrap;
+  background:none;
+}
+.tnav:hover{color:var(--gold2);background:var(--golddim);}
+.tnav.active{color:var(--gold2);background:var(--golddim);border-color:rgba(200,168,75,.25);}
+
+/* ── HERO ────────────────────────────────────── */
+.hero{
+  padding:70px 40px 60px;
+  text-align:center;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(200,168,75,.1) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(25,174,167,.08) 0%,transparent 50%);
+  position:relative;overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle, rgba(200,168,75,.05) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+.hero-chip{
+  display:inline-block;
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  color:var(--gold);text-transform:uppercase;
+  border:1px solid rgba(200,168,75,.3);
+  background:var(--golddim);
+  padding:5px 18px;border-radius:30px;
+  margin-bottom:22px;position:relative;
+}
+.hero h1{
+  font-family:'Tajawal',sans-serif;
+  font-size:clamp(34px,5.5vw,62px);font-weight:900;
+  background:linear-gradient(135deg,#fff 30%,var(--gold2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:14px;position:relative;line-height:1.2;
+}
+.hero-sub{font-size:15px;color:var(--muted);max-width:580px;margin:0 auto 30px;position:relative;line-height:1.9;}
+.hero-stats{
+  display:flex;justify-content:center;gap:32px;flex-wrap:wrap;
+  position:relative;
+}
+.hstat{text-align:center;}
+.hstat-n{font-family:'Tajawal',sans-serif;font-size:28px;font-weight:900;color:var(--gold2);}
+.hstat-l{font-size:12px;color:var(--muted);margin-top:2px;}
+
+/* ── LAYOUT ──────────────────────────────────── */
+.layout{display:flex;min-height:calc(100vh - 54px);}
+.sidebar{
+  width:240px;flex-shrink:0;
+  position:sticky;top:54px;height:calc(100vh - 54px);
+  overflow-y:auto;
+  background:var(--bg2);
+  border-left:1px solid var(--border);
+  padding:20px 0;
+}
+.sidebar::-webkit-scrollbar{width:4px;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--muted2);border-radius:2px;}
+.sb-section{margin-bottom:6px;}
+.sb-head{
+  font-size:10px;font-weight:700;letter-spacing:2px;
+  color:var(--muted2);text-transform:uppercase;
+  padding:8px 20px 5px;
+}
+.sb-link{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 20px;font-size:13px;color:var(--muted);
+  cursor:pointer;transition:all .15s;border-right:2px solid transparent;
+}
+.sb-link:hover{color:var(--off);background:var(--panel);}
+.sb-link.active{color:var(--gold2);background:var(--golddim);border-right-color:var(--gold);}
+.sb-icon{font-size:15px;flex-shrink:0;}
+.main{flex:1;overflow:hidden;padding:40px 40px 80px;}
+@media(max-width:800px){.sidebar{display:none;}.main{padding:24px 20px 60px;}.topnav-tabs{display:none;}}
+
+/* ── CONTENT SECTION ─────────────────────────── */
+.csec{margin-bottom:64px;scroll-margin-top:70px;}
+.csec-title{
+  font-family:'Tajawal',sans-serif;
+  font-size:clamp(20px,3vw,28px);font-weight:800;
+  color:var(--white);margin-bottom:6px;
+  display:flex;align-items:center;gap:12px;
+}
+.csec-title-icon{
+  width:40px;height:40px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.csec-sub{font-size:14px;color:var(--muted);margin-bottom:28px;padding-right:52px;}
+.csec-divider{height:1px;background:linear-gradient(to left,transparent,rgba(200,168,75,.25),transparent);margin-bottom:28px;}
+
+/* ── INTRO CARDS ─────────────────────────────── */
+.intro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:28px;}
+.intro-card{
+  background:var(--panel);border:1px solid var(--border);border-radius:14px;
+  padding:20px 18px;position:relative;overflow:hidden;
+}
+.intro-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;border-radius:0 0 14px 14px;}
+.ic-view::after{background:var(--sky);}
+.ic-add::after{background:var(--green);}
+.ic-change::after{background:var(--gold);}
+.ic-delete::after{background:var(--red);}
+.ic-icon{font-size:24px;margin-bottom:10px;}
+.ic-name{font-family:'Tajawal',sans-serif;font-size:18px;font-weight:800;margin-bottom:6px;}
+.ic-view .ic-name{color:var(--sky);}
+.ic-add .ic-name{color:var(--green);}
+.ic-change .ic-name{color:var(--gold2);}
+.ic-delete .ic-name{color:var(--red2);}
+.ic-desc{font-size:12px;color:var(--muted);line-height:1.7;}
+
+/* ── RULE BOX ────────────────────────────────── */
+.rulebox{
+  background:linear-gradient(135deg,rgba(200,168,75,.07),rgba(25,174,167,.04));
+  border:1px solid rgba(200,168,75,.2);
+  border-radius:12px;padding:18px 22px;
+  font-size:13px;color:var(--off);line-height:1.9;
+  margin-bottom:20px;
+}
+.rulebox strong{color:var(--gold2);}
+.rulebox.info{background:rgba(25,174,167,.05);border-color:rgba(25,174,167,.2);}
+.rulebox.info strong{color:var(--teal2);}
+.rulebox.warn{background:rgba(224,91,91,.05);border-color:rgba(224,91,91,.2);}
+.rulebox.warn strong{color:var(--red2);}
+
+/* ── MODULE GROUP ────────────────────────────── */
+.mod-group{margin-bottom:36px;}
+.mod-group-title{
+  font-family:'Tajawal',sans-serif;font-size:16px;font-weight:800;
+  color:var(--gold2);margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--border);
+}
+.mod-grid{display:flex;flex-direction:column;gap:8px;}
+
+/* ── PERMISSION ITEM ─────────────────────────── */
+.perm-item{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+  transition:border-color .2s;
+}
+.perm-item:hover{border-color:rgba(200,168,75,.25);}
+.perm-item.sensitive{border-color:rgba(224,91,91,.2);}
+.perm-item.sensitive:hover{border-color:rgba(224,91,91,.4);}
+.perm-header{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 18px;cursor:pointer;
+  user-select:none;
+}
+.perm-name{
+  flex:1;font-size:14px;font-weight:600;color:var(--off);
+}
+.perm-badges{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto;}
+.pbadge{
+  font-size:10px;font-weight:700;letter-spacing:.5px;
+  padding:3px 9px;border-radius:10px;border:1px solid;
+  white-space:nowrap;
+}
+.pb-view{color:var(--sky);background:rgba(78,201,193,.1);border-color:rgba(78,201,193,.25);}
+.pb-add{color:var(--green);background:rgba(61,184,120,.1);border-color:rgba(61,184,120,.25);}
+.pb-change{color:var(--gold2);background:rgba(200,168,75,.1);border-color:rgba(200,168,75,.25);}
+.pb-delete{color:var(--red2);background:rgba(224,91,91,.1);border-color:rgba(224,91,91,.25);}
+.pb-special{color:#D4AAFF;background:rgba(123,104,238,.1);border-color:rgba(123,104,238,.25);}
+.perm-toggle{color:var(--muted);transition:transform .3s;font-size:14px;}
+.perm-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .35s ease,padding .3s;
+  border-top:0 solid var(--border);
+}
+.perm-body.open{max-height:400px;border-top-width:1px;padding:14px 18px 16px;}
+.perm-detail{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:600px){.perm-detail{grid-template-columns:1fr;}}
+.pd-block{border-radius:10px;padding:12px 14px;}
+.pd-opens{background:rgba(61,184,120,.06);border:1px solid rgba(61,184,120,.15);}
+.pd-code{background:rgba(200,168,75,.05);border:1px solid rgba(200,168,75,.12);}
+.pd-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
+.pd-opens .pd-title{color:#7ED9A8;}
+.pd-code .pd-title{color:var(--gold);}
+.pd-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.pd-list li{font-size:12px;color:var(--muted);display:flex;align-items:flex-start;gap:6px;line-height:1.5;}
+.pd-list li::before{content:'•';flex-shrink:0;margin-top:2px;}
+.pd-opens .pd-list li::before{color:#7ED9A8;}
+.pd-code .pd-list li::before{color:var(--gold);}
+.pd-code-val{font-family:monospace;font-size:11px;color:var(--teal2);background:rgba(25,174,167,.08);padding:2px 7px;border-radius:4px;display:inline-block;margin-top:2px;}
+/* sensitive banner */
+.sens-banner{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(224,91,91,.07);
+  padding:8px 18px;
+  font-size:11px;color:#F08080;
+  border-top:1px solid rgba(224,91,91,.15);
+}
+/* special perm */
+.perm-item.is-special .perm-name{color:var(--gold2);}
+
+/* ── SENSITIVE LIST ──────────────────────────── */
+.sens-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
+.sens-card{
+  background:rgba(224,91,91,.05);
+  border:1px solid rgba(224,91,91,.15);
+  border-radius:12px;padding:16px 18px;
+  display:flex;align-items:flex-start;gap:12px;
+}
+.sens-icon{font-size:20px;flex-shrink:0;}
+.sens-name{font-size:13px;font-weight:700;color:var(--red2);margin-bottom:4px;}
+.sens-desc{font-size:11px;color:var(--muted);line-height:1.6;}
+
+/* ── TIPS ────────────────────────────────────── */
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+.tip-item{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px;display:flex;gap:14px;}
+.tip-n{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--bg);font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Tajawal',sans-serif;}
+.tip-title{font-size:13px;font-weight:700;color:var(--gold2);margin-bottom:5px;}
+.tip-text{font-size:12px;color:var(--muted);line-height:1.7;}
+
+/* ── TECH REF ────────────────────────────────── */
+.tech-group{margin-bottom:28px;}
+.tech-group-title{font-size:13px;font-weight:700;color:var(--gold2);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.tech-chips{display:flex;flex-wrap:wrap;gap:7px;}
+.tchip{font-family:monospace;font-size:12px;padding:5px 12px;border-radius:8px;background:rgba(25,174,167,.08);color:var(--teal2);border:1px solid rgba(25,174,167,.2);transition:background .2s;}
+.tchip:hover{background:rgba(25,174,167,.15);}
+.tchip.special-perm{background:rgba(123,104,238,.1);color:#D4AAFF;border-color:rgba(123,104,238,.25);}
+
+/* ── SCOPE SECTION ───────────────────────────── */
+.scope-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;}
+.scope-c{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px;position:relative;}
+.scope-c::before{content:'';position:absolute;top:0;right:0;width:3px;height:100%;border-radius:0 12px 12px 0;}
+.sc1::before{background:var(--gold);}
+.sc2::before{background:var(--teal);}
+.sc3::before{background:var(--purple);}
+.sc4::before{background:var(--green);}
+.scope-c-t{font-size:13px;font-weight:700;margin-bottom:8px;}
+.sc1 .scope-c-t{color:var(--gold2);}
+.sc2 .scope-c-t{color:var(--teal2);}
+.sc3 .scope-c-t{color:#9C8FFF;}
+.sc4 .scope-c-t{color:var(--green);}
+.scope-c-d{font-size:12px;color:var(--muted);line-height:1.7;}
+
+/* ── SUMMARY BAR ─────────────────────────────── */
+.summary-bar{
+  background:linear-gradient(135deg,rgba(200,168,75,.08),rgba(25,174,167,.05));
+  border:1px solid rgba(200,168,75,.2);
+  border-radius:16px;padding:28px 32px;
+  font-family:'Tajawal',sans-serif;font-size:17px;font-weight:600;
+  color:var(--off);line-height:1.9;text-align:center;
+  margin-bottom:32px;
+}
+.summary-bar strong{color:var(--gold2);}
+
+/* ── SEARCH HIGHLIGHT ────────────────────────── */
+.hl{background:rgba(200,168,75,.25);border-radius:2px;padding:0 1px;}
+.hidden{display:none!important;}
+
+/* ── FOOTER ──────────────────────────────────── */
+.foot{text-align:center;padding:30px;border-top:1px solid var(--border);color:var(--muted2);font-size:11px;letter-spacing:1px;}
+
+/* ── SCROLL TO TOP ───────────────────────────── */
+.stt{position:fixed;bottom:24px;left:24px;width:40px;height:40px;border-radius:50%;background:var(--gold);color:var(--bg);font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.4);transition:transform .2s;z-index:100;border:none;}
+.stt:hover{transform:scale(1.1);}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="topnav-logo">⚡ Royal Nano</div>
+  <div class="topnav-sep">|</div>
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="ابحث عن صلاحية أو وحدة..." oninput="doSearch(this.value)">
+  </div>
+  <div class="topnav-tabs">
+    <button class="tnav active" onclick="scrollTo('intro')">المقدمة</button>
+    <button class="tnav" onclick="scrollTo('users')">المستخدمون</button>
+    <button class="tnav" onclick="scrollTo('branches')">الفروع</button>
+    <button class="tnav" onclick="scrollTo('sales')">المبيعات</button>
+    <button class="tnav" onclick="scrollTo('purchases')">المشتريات</button>
+    <button class="tnav" onclick="scrollTo('hr')">الموارد البشرية</button>
+    <button class="tnav" onclick="scrollTo('finance')">المالية</button>
+    <button class="tnav" onclick="scrollTo('reports')">التقارير</button>
+    <button class="tnav" onclick="scrollTo('sysadmin')">النظام</button>
+    <button class="tnav" onclick="scrollTo('sensitive')">الحساسة</button>
+    <button class="tnav" onclick="scrollTo('deferred')">المؤجلة</button>
+    <button class="tnav" onclick="scrollTo('techref')">المرجع التقني</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-chip">المرجع الشامل للصلاحيات</div>
+  <h1>دليل صلاحيات النظام</h1>
+  <p class="hero-sub">مرجع تفصيلي لكل صلاحية في النظام — ما الذي تفتحه، متى تُمنح، ومن يحتاجها</p>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-n">١٠</div><div class="hstat-l">وحدات رئيسية</div></div>
+    <div class="hstat"><div class="hstat-n">٧٥+</div><div class="hstat-l">كيان في النظام</div></div>
+    <div class="hstat"><div class="hstat-n">١٢</div><div class="hstat-l">صلاحيات حساسة</div></div>
+    <div class="hstat"><div class="hstat-n">٥</div><div class="hstat-l">صلاحيات إدارية</div></div>
+    <div class="hstat"><div class="hstat-n">١٣</div><div class="hstat-l">صلاحية خاصة</div></div>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-section">
+    <div class="sb-head">المحتوى</div>
+    <div class="sb-link active" onclick="scrollTo('intro')"><span class="sb-icon">📖</span>المقدمة والقواعد</div>
+    <div class="sb-link" onclick="scrollTo('scope')"><span class="sb-icon">🔭</span>نطاق الرؤية</div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-head">الوحدات</div>
+    <div class="sb-link" onclick="scrollTo('users')"><span class="sb-icon">👤</span>المستخدمون</div>
+    <div class="sb-link" onclick="scrollTo('branches')"><span class="sb-icon">🏢</span>الفروع والمخزون</div>
+    <div class="sb-link" onclick="scrollTo('sales')"><span class="sb-icon">🤝</span>المبيعات والعملاء</div>
+    <div class="sb-link" onclick="scrollTo('purchases')"><span class="sb-icon">🛒</span>المشتريات</div>
+    <div class="sb-link" onclick="scrollTo('hr')"><span class="sb-icon">👥</span>الموارد البشرية</div>
+    <div class="sb-link" onclick="scrollTo('finance')"><span class="sb-icon">💰</span>المالية</div>
+    <div class="sb-link" onclick="scrollTo('reports')"><span class="sb-icon">📊</span>التقارير والتحليلات</div>
+    <div class="sb-link" onclick="scrollTo('cms')"><span class="sb-icon">🌐</span>محتوى الموقع</div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-head">مراجع</div>
+    <div class="sb-link" onclick="scrollTo('sysadmin')"><span class="sb-icon">🛡️</span>صلاحيات النظام</div>
+    <div class="sb-link" onclick="scrollTo('sensitive')"><span class="sb-icon">🚨</span>الصلاحيات الحساسة</div>
+    <div class="sb-link" onclick="scrollTo('deferred')"><span class="sb-icon">⏳</span>المؤجلة للمرحلة التالية</div>
+    <div class="sb-link" onclick="scrollTo('buildrole')"><span class="sb-icon">🔧</span>بناء وظيفة صحيحة</div>
+    <div class="sb-link" onclick="scrollTo('recommendations')"><span class="sb-icon">✅</span>التوصية العملية</div>
+    <div class="sb-link" onclick="scrollTo('techref')"><span class="sb-icon">💻</span>المرجع التقني</div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main" id="mainContent">
+
+<!-- ══ INTRO ══════════════════════════════════════ -->
+<section class="csec" id="intro">
+  <div class="csec-title">
+    <div class="csec-title-icon" style="background:linear-gradient(135deg,var(--gold),var(--gold2));">📖</div>
+    المقدمة — كيف تقرأ هذا الدليل
+  </div>
+  <p class="csec-sub">فهم قواعد النظام الأساسية يجعل قرارات منح الصلاحيات أسهل وأدق</p>
+  <div class="csec-divider"></div>
+
+  <div class="intro-grid" style="margin-bottom:28px;">
+    <div class="intro-card ic-view"><div class="ic-icon">👁️</div><div class="ic-name">عرض</div><div class="ic-desc">يفتح صفحة القائمة والتفاصيل — يسمح برؤية البيانات المسموح بها — يتيح استخدام الكيان في القوائم المنسدلة</div></div>
+    <div class="intro-card ic-add"><div class="ic-icon">➕</div><div class="ic-name">إضافة</div><div class="ic-desc">يفتح شاشة الإنشاء وزر الإضافة — يسمح بإنشاء سجلات جديدة — لا يعني بالضرورة رؤية السجلات القديمة</div></div>
+    <div class="intro-card ic-change"><div class="ic-icon">✏️</div><div class="ic-name">تعديل</div><div class="ic-desc">يفتح شاشة التعديل وزره — يسمح بتغيير بيانات السجل — قد يفتح إجراءات مرتبطة بالتعديل</div></div>
+    <div class="intro-card ic-delete"><div class="ic-icon">🗑️</div><div class="ic-name">حذف</div><div class="ic-desc">يفتح خيار الحذف — صلاحية حساسة جدًا — يجب منحها بحذر شديد وللمسؤولين فقط</div></div>
+  </div>
+
+  <div class="rulebox" style="margin-bottom:14px;">
+    <strong>القاعدة الأولى:</strong> الصلاحية وحدها لا تكفي دائمًا. ما يراه المستخدم فعليًا يتأثر أيضًا بالفرع التنظيمي، الفروع المسموح العمل عليها، الموظفين التابعين له، والعملاء المخصصين له.
+  </div>
+  <div class="rulebox info" style="margin-bottom:14px;">
+    <strong>القاعدة الثانية:</strong> هناك فرق بين صلاحية تسمح بإنشاء عملية على فرع معين، وصلاحية تسمح برؤية كل بيانات ذلك الفرع. <strong>النطاق</strong> هو الذي يحدد ما يُرى فعليًا.
+  </div>
+  <div class="rulebox info">
+    <strong>ملاحظة القوائم المنسدلة:</strong> قد يظهر للمستخدم كيان داخل قائمة اختيار حتى لو لم يكن لديه صلاحية عرض كاملة — لأن النظام يسمح بـ lookup إذا كان مطلوبًا لإتمام عملية مسموح بها. هذا سلوك مقصود.
+  </div>
+</section>
+
+<!-- ══ SCOPE ═══════════════════════════════════════ -->
+<section class="csec" id="scope">
+  <div class="csec-title">
+    <div class="csec-title-icon" style="background:linear-gradient(135deg,var(--teal),var(--teal2));">🔭</div>
+    نطاق الرؤية
+  </div>
+  <p class="csec-sub">نفس الصلاحية قد تعطي نتائج مختلفة لأشخاص مختلفين — بسبب اختلاف النطاق</p>
+  <div class="csec-divider"></div>
+  <div class="scope-cards">
+    <div class="scope-c sc1"><div class="scope-c-t">👤 الموظف العادي</div><div class="scope-c-d">يرى فقط العملاء والسجلات المخصصة له شخصيًا</div></div>
+    <div class="scope-c sc2"><div class="scope-c-t">👑 قائد الفريق</div><div class="scope-c-d">يرى سجلاته + سجلات الموظفين التابعين له كـ "قائد"</div></div>
+    <div class="scope-c sc3"><div class="scope-c-t">🏢 مدير الفرع</div><div class="scope-c-d">يرى جميع سجلات الفرع الذي يديره بالكامل</div></div>
+    <div class="scope-c sc4"><div class="scope-c-t">🛡️ مدير النظام</div><div class="scope-c-d">يرى بيانات كل الفروع والكيانات في النظام</div></div>
+  </div>
+</section>
+
+<!-- ══ USERS ═══════════════════════════════════════ -->
+<section class="csec" id="users">
+  <div class="csec-title">
+    <div class="csec-title-icon" style="background:linear-gradient(135deg,#7B68EE,#9C8FFF);">👤</div>
+    المستخدمون والحسابات
+  </div>
+  <div class="csec-divider"></div>
+  <div class="mod-group">
+    <div class="mod-grid">
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header">
+          <span style="font-size:18px;">🔐</span>
+          <span class="perm-name">حسابات المستخدمين</span>
+          <div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div>
+          <span class="perm-toggle">▾</span>
+        </div>
+        <div class="perm-body">
+          <div class="perm-detail">
+            <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة حسابات الدخول للنظام</li><li>ربط الحسابات بالموظفين</li><li>تعديل بيانات الدخول أو حالة التفعيل</li></ul></div>
+            <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">view_user / add_user / change_user / delete_user</span></li></ul></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BRANCHES & INVENTORY ═══════════════════════ -->
+<section class="csec" id="branches">
+  <div class="csec-title">
+    <div class="csec-title-icon" style="background:linear-gradient(135deg,var(--gold),var(--gold2));">🏢</div>
+    الفروع والمخزون
+  </div>
+  <div class="csec-divider"></div>
+
+  <div class="mod-group">
+    <div class="mod-group-title">🏢 الفروع</div>
+    <div class="mod-grid">
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">🏢</span><span class="perm-name">الفروع</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة الفروع وتحديد مدير كل فرع</li><li>تحديد ما إذا كان الفرع إداريًا رئيسيًا</li><li>استخدام الفرع في العملاء والمعاملات والموظفين</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">branch</span></li></ul></div>
+        </div></div>
+      </div>
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">💳</span><span class="perm-name">معاملات حسابات الفروع</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تسجيل الحركات المرتبطة بحسابات الفروع</li><li>متابعة المعاملات المرتبطة بالفرع</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">branchaccounttransaction</span></li></ul></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mod-group">
+    <div class="mod-group-title">📦 المخزون</div>
+    <div class="mod-grid">
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">📂</span><span class="perm-name">فئات الأصناف</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تنظيم أصناف المخزون في مجموعات</li><li>استخدام الفئات عند إنشاء الأصناف</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">itemcategory</span></li></ul></div>
+        </div></div>
+      </div>
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">📏</span><span class="perm-name">الوحدات</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تعريف وحدات القياس (قطعة، كيلو، لتر...)</li><li>استخدامها في المخزون والشراء والمبيعات</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">unit</span></li></ul></div>
+        </div></div>
+      </div>
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">📦</span><span class="perm-name">عناصر المخزون</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إنشاء الأصناف وضبط بياناتها</li><li>استخدامها في الطلبات والفواتير والحركات</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">inventoryitem</span></li></ul></div>
+        </div></div>
+      </div>
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">🔄</span><span class="perm-name">الحركات المخزنية</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>متابعة الدخول والخروج من المخزون</li><li>تسجيل حركات الأصناف</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">movement</span></li></ul></div>
+        </div></div>
+      </div>
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">🏷️</span><span class="perm-name">الحجوزات المسبقة</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تسجيل حجز كميات من الأصناف قبل التنفيذ الفعلي</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">preorder</span></li></ul></div>
+        </div></div>
+      </div>
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">⚖️</span><span class="perm-name">تسويات المخزون</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>معالجة فروقات الجرد</li><li>تسجيل زيادات أو نواقص وتصحيح الرصيد</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">stockadjustment</span></li></ul></div>
+        </div></div>
+      </div>
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">📍</span><span class="perm-name">مواقع التخزين</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تنظيم أماكن التخزين داخل المخزون</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">inventorylocation</span></li></ul></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SALES ══════════════════════════════════════ -->
+<section class="csec" id="sales">
+  <div class="csec-title">
+    <div class="csec-title-icon" style="background:linear-gradient(135deg,var(--teal),var(--teal2));">🤝</div>
+    المبيعات وخدمة العملاء
+  </div>
+  <div class="csec-divider"></div>
+
+  <div class="mod-group">
+    <div class="mod-group-title">📋 طلبات ومتابعة العملاء</div>
+    <div class="mod-grid">
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">📋</span><span class="perm-name">طلبات العملاء</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تسجيل طلبات العملاء الأولية</li><li>متابعة الطلب قبل تحوله إلى عميل أو عرض سعر</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">clientrequest</span></li></ul></div>
+        </div></div>
+      </div>
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">💬</span><span class="perm-name">أنواع المتابعات</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة أنواع المتابعات (اتصال، زيارة، تذكير، إلخ)</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">customerfollowuptype</span></li></ul></div>
+        </div></div>
+      </div>
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">🔔</span><span class="perm-name">المتابعات</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تسجيل ومتابعة تواصل الموظفين مع العملاء</li><li>مراجعة تاريخ المتابعة الكامل</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">followup</span></li></ul></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mod-group">
+    <div class="mod-group-title">👤 العملاء</div>
+    <div class="mod-grid">
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">👤</span><span class="perm-name">العملاء</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة بيانات العملاء كاملة</li><li>إسناد العميل إلى موظف مسؤول</li><li>ربط العميل بفرع</li><li>استخدامه في المتابعات والعروض والفواتير</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">customer</span></li></ul></div>
+        </div></div>
+      </div>
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">📞</span><span class="perm-name">أرقام هواتف العملاء</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة أرقام العميل كسجلات مستقلة</li><li>التحكم الفني في سجلات الأرقام</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">customerphonenumber</span></li></ul></div>
+        </div></div>
+      </div>
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">📎</span><span class="perm-name">مرفقات العملاء</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>رفع الملفات والمستندات المرتبطة بالعميل</li><li>الاطلاع على الصور والمستندات الخاصة به</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">customerattachment</span></li></ul></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mod-group">
+    <div class="mod-group-title">🧾 عروض الأسعار والفواتير</div>
+    <div class="mod-grid">
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">📄</span><span class="perm-name">عروض الأسعار</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إنشاء وتعديل عروض الأسعار</li><li>ربطها بالعملاء</li><li>تحديد الحجز والموعد عند الحاجة</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">quotation / quotationitem</span></li></ul></div>
+        </div></div>
+      </div>
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">🧾</span><span class="perm-name">فواتير المبيعات</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إنشاء وتعديل فواتير المبيعات</li><li>متابعة حالة الفاتورة</li><li>ربطها بالعميل وعرض السعر</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">salesinvoice / salesinvoiceitem</span></li></ul></div>
+        </div></div>
+      </div>
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">📦</span><span class="perm-name">العناصر المستهلكة في فاتورة المبيعات</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تسجيل المواد والأصناف المستهلكة في الفاتورة</li><li>مراجعة الاستهلاك قبل التأكيد النهائي</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">consumeditem</span></li></ul></div>
+        </div></div>
+      </div>
+      <div class="perm-item" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">↩️</span><span class="perm-name">مرتجعات المبيعات</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body"><div class="perm-detail">
+          <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تسجيل المرتجعات الخاصة بالفواتير</li><li>إدارة حالة المرتجع وبنوده</li></ul></div>
+          <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">salesreturn / salesreturnitem</span></li></ul></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mod-group">
+    <div class="mod-group-title" style="color:var(--red2);">⭐ صلاحيات مبيعات خاصة</div>
+    <div class="rulebox warn" style="margin-bottom:14px;"><strong>تنبيه:</strong> هذه الصلاحيات حساسة — لا تُمنح للجميع بشكل افتراضي</div>
+    <div class="mod-grid">
+      <div class="perm-item is-special sensitive" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">📞</span><span class="perm-name">رؤية رقم هاتف العميل</span><div class="perm-badges"><span class="pbadge pb-special">خاصة</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body">
+          <div class="perm-detail">
+            <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>ظهور أرقام الهاتف في الجداول وصفحات التفاصيل</li><li>ظهور الأرقام في بيانات العملاء المكررة</li><li>التعامل مع الأرقام في واجهات المتابعة</li></ul></div>
+            <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">view_customerphonenumber</span></li></ul></div>
+          </div>
+          <div class="sens-banner">🚨 لا تُمنح إلا لمن يتواصل فعليًا مع العملاء — بدونها أرقام الهاتف مخفية تمامًا</div>
+        </div>
+      </div>
+      <div class="perm-item is-special sensitive" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">🗂️</span><span class="perm-name">رؤية بيانات العميل المؤرشفة أو المكررة</span><div class="perm-badges"><span class="pbadge pb-special">خاصة</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body">
+          <div class="perm-detail">
+            <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>ظهور تبويب بيانات العملاء المكررة</li><li>رؤية السجل التاريخي عند استبدال بيانات العميل</li></ul></div>
+            <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">view_customerprofilesnapshot</span></li></ul></div>
+          </div>
+          <div class="sens-banner">🚨 لمديري الفروع والمشرفين وتدقيق البيانات فقط</div>
+        </div>
+      </div>
+      <div class="perm-item is-special sensitive" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">💰</span><span class="perm-name">رؤية أسعار العناصر المستهلكة</span><div class="perm-badges"><span class="pbadge pb-special">خاصة</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body">
+          <div class="perm-detail">
+            <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>ظهور أسعار العناصر المستهلكة داخل الفاتورة</li><li>بدونها: العنصر والكمية فقط مرئيان</li></ul></div>
+            <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">view_consumeditemprice</span></li></ul></div>
+          </div>
+          <div class="sens-banner">🚨 للمديرين والمحاسبين فقط — لا للفنيين أو المنفذين</div>
+        </div>
+      </div>
+      <div class="perm-item is-special sensitive" onclick="togglePerm(this)">
+        <div class="perm-header"><span style="font-size:18px;">✅</span><span class="perm-name">تأكيد فاتورة المبيعات</span><div class="perm-badges"><span class="pbadge pb-special">خاصة</span></div><span class="perm-toggle">▾</span></div>
+        <div class="perm-body">
+          <div class="perm-detail">
+            <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تأكيد الفاتورة بعد مراجعة الاستهلاك</li><li>يؤدي إلى اعتماد الاستهلاك وخصم المخزون</li></ul></div>
+            <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">confirm_salesinvoice</span></li></ul></div>
+          </div>
+          <div class="sens-banner">🚨 يؤثر مباشرة على المخزون — لمدير الفرع والمشرف المالي فقط</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PURCHASES ══════════════════════════════════ -->
+<section class="csec" id="purchases">
+  <div class="csec-title">
+    <div class="csec-title-icon" style="background:linear-gradient(135deg,var(--orange),#FFAB6E);">🛒</div>
+    المشتريات
+  </div>
+  <div class="csec-divider"></div>
+  <div class="mod-grid">
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">🏭</span><span class="perm-name">المخازن</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة المخازن المستخدمة في المشتريات</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">warehouse</span></li></ul></div></div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">🏷️</span><span class="perm-name">فئات المصروفات</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تصنيف المصروفات وربطها بالموردين والشراء</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">expensecategory</span></li></ul></div></div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">🏬</span><span class="perm-name">الموردون</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة الموردين وربطهم بفرع أو تصنيف</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">supplier</span></li></ul></div></div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">📝</span><span class="perm-name">طلبات الشراء</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تسجيل الطلبات الأولية قبل أوامر الشراء</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">purchaserequest / purchaserequestitem</span></li></ul></div></div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">📋</span><span class="perm-name">أوامر الشراء</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إنشاء أوامر الشراء المعتمدة</li><li>متابعة حالة الأمر</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">purchaseorder / purchaseorderitem</span></li></ul></div></div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">🧾</span><span class="perm-name">فواتير الشراء</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تسجيل الفواتير الواردة من الموردين</li><li>ربطها بالمورد وأمر الشراء</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">purchaseinvoice / purchaseinvoiceitem</span></li></ul></div></div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">↩️</span><span class="perm-name">مرتجعات الشراء</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تسجيل المرتجعات المرتبطة بالمشتريات وبنودها</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">purchasereturn / purchasereturnitem</span></li></ul></div></div></div></div>
+  </div>
+</section>
+
+<!-- ══ HR ══════════════════════════════════════════ -->
+<section class="csec" id="hr">
+  <div class="csec-title">
+    <div class="csec-title-icon" style="background:linear-gradient(135deg,var(--green),#6ECFA0);">👥</div>
+    الموارد البشرية
+  </div>
+  <div class="csec-divider"></div>
+
+  <div class="mod-group">
+    <div class="mod-group-title">🏗️ الهيكل الإداري</div>
+    <div class="mod-grid">
+      <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">💼</span><span class="perm-name">الوظائف</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة الوظائف</li><li>تحديد الصلاحيات المسموح بها داخل كل وظيفة</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">jobrole</span></li></ul></div></div></div></div>
+      <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">🏢</span><span class="perm-name">الأقسام</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تنظيم الهيكل الإداري</li><li>ربط الموظفين بالأقسام</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">department</span></li></ul></div></div></div></div>
+      <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">👤</span><span class="perm-name">الموظفون</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إنشاء ملفات الموظفين</li><li>ربطهم بالحسابات والوظائف والأقسام والفروع</li><li>تحديد الفروع المسموح العمل عليها</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">employee / employeeattachment</span></li></ul></div></div></div></div>
+    </div>
+  </div>
+
+  <div class="mod-group">
+    <div class="mod-group-title">🎯 التوظيف والتقييم</div>
+    <div class="mod-grid">
+      <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">📨</span><span class="perm-name">المتقدمون للوظائف</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة طلبات التوظيف والمتقدمين</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">applicant</span></li></ul></div></div></div></div>
+      <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">🎙️</span><span class="perm-name">المقابلات</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>جدولة ومتابعة المقابلات الوظيفية</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">interview / evaluation</span></li></ul></div></div></div></div>
+    </div>
+  </div>
+
+  <div class="mod-group">
+    <div class="mod-group-title">⏰ الحضور والإجازات والرواتب</div>
+    <div class="mod-grid">
+      <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">📅</span><span class="perm-name">طلبات الإجازة</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إنشاء ومتابعة طلبات الإجازة ومراجعة حالتها</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">leaverequest</span></li></ul></div></div></div></div>
+      <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">🕐</span><span class="perm-name">الحضور والانصراف</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>مراجعة وتسجيل الحضور والانصراف</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">attendance / attendancepolicy / officialholiday</span></li></ul></div></div></div></div>
+      <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">🎁</span><span class="perm-name">المكافآت والخصومات</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة البنود المالية المرتبطة بالموظفين</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">bonusdeduction / competition</span></li></ul></div></div></div></div>
+      <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">💵</span><span class="perm-name">تشغيل الرواتب</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إنشاء دورات الرواتب الشهرية</li><li>مراجعة النتائج والبنود الداخلية</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">payrollrun / payrollline</span></li></ul></div></div></div></div>
+    </div>
+  </div>
+
+  <div class="mod-group">
+    <div class="mod-group-title">⚙️ المهام والتنفيذ</div>
+    <div class="mod-grid">
+      <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">✅</span><span class="perm-name">المهام</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة مهام التنفيذ والمتابعة</li><li>ربط المهمة بعميل أو عرض سعر</li><li>تغيير الحالة والأولوية والاعتماد</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">task</span></li></ul></div></div></div></div>
+      <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">📦</span><span class="perm-name">العناصر المستهلكة للمهمة</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body">
+        <div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تسجيل استهلاك الأصناف داخل المهمة</li><li>هذا مختلف عن الاستهلاك داخل فاتورة المبيعات</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">taskconsumeditem</span></li></ul></div></div>
+        <div class="sens-banner" style="border-top:1px solid rgba(200,168,75,.15);background:rgba(200,168,75,.05);color:var(--gold2);">⚠️ تختلف عن consumeditem في فاتورة المبيعات — استهلاك المهمة لا يؤثر على المخزون مباشرة</div>
+      </div></div>
+      <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">👥</span><span class="perm-name">إسنادات المهام</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تحديد من يعمل على المهمة ودوره وحالة الإسناد</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">taskassignment</span></li></ul></div></div></div></div>
+      <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">💬</span><span class="perm-name">تعليقات ومرفقات وسجل المهام</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>متابعة النقاشات الداخلية على المهمة</li><li>رفع الملفات والصور المرتبطة</li><li>مراجعة السجل التاريخي لكل ما حدث</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">taskcomment / taskattachment / taskactivitylog</span></li></ul></div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINANCE ════════════════════════════════════ -->
+<section class="csec" id="finance">
+  <div class="csec-title">
+    <div class="csec-title-icon" style="background:linear-gradient(135deg,#3DB878,#6ECFA0);">💰</div>
+    المالية
+  </div>
+  <div class="csec-divider"></div>
+  <div class="mod-grid">
+    <div class="perm-item sensitive" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">💳</span><span class="perm-name">طرق الدفع</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة طرق الدفع المتاحة في الإيصالات والمدفوعات</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">paymentmethod</span></li></ul></div></div><div class="sens-banner">🚨 للمحاسب والمدير المالي فقط</div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">📒</span><span class="perm-name">الحسابات</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة دليل الحسابات</li><li>استخدام الحسابات في القيود والإيصالات</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">account</span></li></ul></div></div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">🏛️</span><span class="perm-name">أنواع الضرائب</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة تعريفات الضرائب وتطبيقها</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">taxtype</span></li></ul></div></div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">🎯</span><span class="perm-name">مراكز التكلفة</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تنظيم التحليل المالي حسب مراكز التكلفة</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">costcenter</span></li></ul></div></div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">📆</span><span class="perm-name">السنوات المالية</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة الدورات المالية المفتوحة والمغلقة</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">fiscalyear</span></li></ul></div></div></div></div>
+    <div class="perm-item sensitive" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">📊</span><span class="perm-name">القيود اليومية</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تسجيل القيود المحاسبية ومراجعتها</li><li>ربطها بالمستندات المالية</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">journalentry / journalentryline</span></li></ul></div></div><div class="sens-banner">🚨 صلاحية حساسة — للمحاسبين فقط</div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">📥</span><span class="perm-name">إيصالات الاستلام</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تسجيل المقبوضات وتوزيعها على الفواتير</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">receiptvoucher / receiptvoucherallocation</span></li></ul></div></div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">📤</span><span class="perm-name">إيصالات الدفع</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>تسجيل المدفوعات للموردين أو الرواتب</li><li>توزيعها على فواتير أو مستحقات</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">paymentvoucher / paymentvoucherallocation</span></li></ul></div></div></div></div>
+    <div class="perm-item sensitive" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">⚙️</span><span class="perm-name">الإعدادات المالية</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة الإعدادات العامة للمالية</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">financialsettings</span></li></ul></div></div><div class="sens-banner">🚨 للمدير المالي فقط — تغييرها يؤثر على كل النظام المالي</div></div></div>
+  </div>
+</section>
+
+<!-- ══ REPORTS ════════════════════════════════════ -->
+<section class="csec" id="reports">
+  <div class="csec-title">
+    <div class="csec-title-icon" style="background:linear-gradient(135deg,var(--purple),#9C8FFF);">📊</div>
+    التقارير والتحليلات
+  </div>
+  <div class="csec-divider"></div>
+  <div class="mod-group">
+    <div class="mod-group-title">📊 التقارير</div>
+    <div class="mod-grid">
+      <div class="perm-item is-special" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">📊</span><span class="perm-name">التقارير</span><div class="perm-badges"><span class="pbadge pb-special">عرض</span><span class="pbadge pb-special">إنشاء</span><span class="pbadge pb-special">تصدير</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>فتح وحدة التقارير وتشغيلها</li><li>بناء التقارير المخصصة</li><li>تصدير النتائج</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">view_reports / create_reports / export_reports</span></li></ul></div></div></div></div>
+      <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">📁</span><span class="perm-name">قوالب وتشغيلات وجدولة التقارير</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>حفظ القوالب الجاهزة للتقارير</li><li>مراجعة تاريخ التشغيل والنتائج</li><li>جدولة إرسال أو تشغيل التقارير تلقائيًا</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">reporttemplate / reportexecution / scheduledreport</span></li></ul></div></div></div></div>
+    </div>
+  </div>
+  <div class="mod-group">
+    <div class="mod-group-title">📈 التحليلات ولوحات البيانات</div>
+    <div class="mod-grid">
+      <div class="perm-item is-special" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">📈</span><span class="perm-name">التحليلات</span><div class="perm-badges"><span class="pbadge pb-special">عرض</span><span class="pbadge pb-special">إنشاء</span><span class="pbadge pb-special">تصدير</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>الوصول إلى لوحات التحليل</li><li>إنشاء عناصر تحليلية</li><li>تصدير نتائج التحليل</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">view_analytics / create_analytics / export_analytics</span></li></ul></div></div></div></div>
+      <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">🔲</span><span class="perm-name">لوحات التحليل وعناصرها</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إنشاء لوحات تحليلية وإدارتها</li><li>إدارة الويدجت والبطاقات داخل اللوحات</li><li>ترتيب عناصر التحليل وتخصيصه لكل مستخدم</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">dashboard / dashboardwidget / dashboardwidgetposition / userdashboardpreference / analyticscache / analyticsalert</span></li></ul></div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CMS ════════════════════════════════════════ -->
+<section class="csec" id="cms">
+  <div class="csec-title">
+    <div class="csec-title-icon" style="background:linear-gradient(135deg,var(--sky),#88E8E3);">🌐</div>
+    محتوى الموقع الخارجي
+  </div>
+  <div class="csec-divider"></div>
+  <div class="rulebox info" style="margin-bottom:20px;"><strong>ملاحظة:</strong> هذه الصلاحيات تختص بإدارة المحتوى الظاهر على الموقع الخارجي — الخدمات والمقالات والتقييمات والتعليقات والمعرض</div>
+  <div class="mod-grid">
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">🖼️</span><span class="perm-name">المعرض وصور المعرض</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة صور المعرض الظاهرة للزوار</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">gallery / galleryimage</span></li></ul></div></div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">⭐</span><span class="perm-name">تقييمات العملاء</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>مراجعة وإدارة تقييمات العملاء للعرض أو الإخفاء</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">customerreview</span></li></ul></div></div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">🛎️</span><span class="perm-name">الخدمات</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة صفحات الخدمات الظاهرة على الموقع</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">service</span></li></ul></div></div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">✍️</span><span class="perm-name">المدونات والتعليقات</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إنشاء ومراجعة المقالات الظاهرة على الموقع</li><li>إدارة التعليقات على المقالات</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">blog / comment</span></li></ul></div></div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">✉️</span><span class="perm-name">رسائل التواصل</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>مراجعة رسائل التواصل الواردة من الموقع</li><li>إدارة الردود أو الأرشفة</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">contactmessage</span></li></ul></div></div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">🔗</span><span class="perm-name">روابط التواصل</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة روابط التواصل الاجتماعي وقنوات التواصل الظاهرة على الموقع</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">sociallink</span></li></ul></div></div></div></div>
+    <div class="perm-item" onclick="togglePerm(this)"><div class="perm-header"><span style="font-size:18px;">📜</span><span class="perm-name">سياسات الخصوصية</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div><div class="perm-body"><div class="perm-detail"><div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة محتوى سياسة الخصوصية المرتبطة بالموقع الخارجي</li></ul></div><div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">privacypolicy</span></li></ul></div></div></div></div>
+  </div>
+</section>
+
+<!-- ══ SYSTEM ADMIN ═══════════════════════════════ -->
+<section class="csec" id="sysadmin">
+  <div class="csec-title">
+    <div class="csec-title-icon" style="background:linear-gradient(135deg,var(--red),#FF6B8A);">🛡️</div>
+    صلاحيات النظام العامة والإدارية
+  </div>
+  <p class="csec-sub">صلاحيات حساسة جدًا تخص إدارة النظام نفسه — لا تُعطى إلا لمسؤول تقني أو إداري عليا</p>
+  <div class="csec-divider"></div>
+  <div class="rulebox warn" style="margin-bottom:20px;"><strong>تحذير:</strong> هذه الصلاحيات تؤثر على بنية النظام وليس فقط البيانات — منحها بشكل خاطئ قد يعطل إعدادات الصلاحيات للجميع</div>
+  <div class="mod-grid">
+    <div class="perm-item sensitive" onclick="togglePerm(this)">
+      <div class="perm-header"><span style="font-size:18px;">👤</span><span class="perm-name">المستخدمون</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+      <div class="perm-body"><div class="perm-detail">
+        <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة حسابات الدخول للمستخدمين</li><li>تفعيل وتعطيل الحسابات</li><li>تغيير بيانات الدخول</li></ul></div>
+        <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">user</span></li></ul></div>
+      </div><div class="sens-banner">🚨 لمسؤول النظام فقط — تعديل أي مستخدم يمكن أن يلغي صلاحياته أو يعطل دخوله</div></div>
+    </div>
+    <div class="perm-item sensitive" onclick="togglePerm(this)">
+      <div class="perm-header"><span style="font-size:18px;">🔑</span><span class="perm-name">الصلاحيات</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+      <div class="perm-body"><div class="perm-detail">
+        <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>مراجعة سجل الصلاحيات التقنية في النظام</li><li>إدارة تعريفات الصلاحيات نفسها</li></ul></div>
+        <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">permission</span></li></ul></div>
+      </div><div class="sens-banner">🚨 صلاحية إدارية حساسة جدًا — لا تُعطى إلا لمسؤول تقني متخصص</div></div>
+    </div>
+    <div class="perm-item sensitive" onclick="togglePerm(this)">
+      <div class="perm-header"><span style="font-size:18px;">👥</span><span class="perm-name">المجموعات</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+      <div class="perm-body"><div class="perm-detail">
+        <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>التعامل مع مجموعات الصلاحيات الداخلية في النظام</li></ul></div>
+        <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">group</span></li></ul></div>
+      </div><div class="sens-banner">🚨 جزء تقني داخلي — لا يحتاجها المستخدم التشغيلي العادي</div></div>
+    </div>
+    <div class="perm-item" onclick="togglePerm(this)">
+      <div class="perm-header"><span style="font-size:18px;">📄</span><span class="perm-name">أنواع المحتوى</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+      <div class="perm-body"><div class="perm-detail">
+        <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>جزء تقني داخلي مرتبط بهيكل صلاحيات Django</li><li>لا يحتاجها المستخدم التشغيلي العادي</li></ul></div>
+        <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">contenttype</span></li></ul></div>
+      </div></div>
+    </div>
+    <div class="perm-item" onclick="togglePerm(this)">
+      <div class="perm-header"><span style="font-size:18px;">🔔</span><span class="perm-name">إعدادات الإشعارات</span><div class="perm-badges"><span class="pbadge pb-view">عرض</span><span class="pbadge pb-add">إضافة</span><span class="pbadge pb-change">تعديل</span><span class="pbadge pb-delete">حذف</span></div><span class="perm-toggle">▾</span></div>
+      <div class="perm-body"><div class="perm-detail">
+        <div class="pd-block pd-opens"><div class="pd-title">ما الذي تفتحه</div><ul class="pd-list"><li>إدارة تفضيلات أو إعدادات الإشعارات على مستوى النظام</li></ul></div>
+        <div class="pd-block pd-code"><div class="pd-title">الاسم التقني</div><ul class="pd-list"><li><span class="pd-code-val">notificationsettings</span></li></ul></div>
+      </div><div class="sens-banner" style="background:rgba(200,168,75,.05);border-top:1px solid rgba(200,168,75,.15);color:var(--gold2);">⚠️ تُعطى بحذر — يفضل قصرها على الإدارة العليا</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SENSITIVE ══════════════════════════════════ -->
+<section class="csec" id="sensitive">
+  <div class="csec-title">
+    <div class="csec-title-icon" style="background:linear-gradient(135deg,var(--red),var(--red2));">🚨</div>
+    الصلاحيات الحساسة — تحتاج انتباهًا خاصًا
+  </div>
+  <p class="csec-sub">هذه الصلاحيات يجب عدم منحها بشكل واسع — لكل منها سبب واضح لتقييدها</p>
+  <div class="csec-divider"></div>
+  <div class="sens-grid">
+    <div class="sens-card"><span class="sens-icon">📞</span><div><div class="sens-name">رؤية رقم هاتف العميل</div><div class="sens-desc">بيانات تواصل شخصية — فقط لمن يتواصل مع العميل فعليًا</div></div></div>
+    <div class="sens-card"><span class="sens-icon">🗂️</span><div><div class="sens-name">رؤية بيانات العميل المؤرشفة</div><div class="sens-desc">سجلات تاريخية حساسة — للمشرفين ومدقق البيانات</div></div></div>
+    <div class="sens-card"><span class="sens-icon">💰</span><div><div class="sens-name">رؤية أسعار العناصر المستهلكة</div><div class="sens-desc">بيانات تسعير وتكلفة — للمديرين والمحاسبين فقط</div></div></div>
+    <div class="sens-card"><span class="sens-icon">✅</span><div><div class="sens-name">تأكيد فاتورة المبيعات</div><div class="sens-desc">يؤثر مباشرة على المخزون — لمدير الفرع والمشرف</div></div></div>
+    <div class="sens-card"><span class="sens-icon">🗑️</span><div><div class="sens-name">حذف العملاء والفواتير</div><div class="sens-desc">حذف نهائي — للمديرين في حالات محددة فقط</div></div></div>
+    <div class="sens-card"><span class="sens-icon">🗑️</span><div><div class="sens-name">حذف القيود والإيصالات</div><div class="sens-desc">يؤثر على السجلات المحاسبية — للمدير المالي فقط</div></div></div>
+    <div class="sens-card"><span class="sens-icon">🗑️</span><div><div class="sens-name">حذف المهام وعناصرها</div><div class="sens-desc">يمحو سجل التنفيذ — للمدير فقط عند الضرورة</div></div></div>
+    <div class="sens-card"><span class="sens-icon">💳</span><div><div class="sens-name">إدارة طرق الدفع</div><div class="sens-desc">تؤثر على جميع الإيصالات — للمحاسب الرئيسي فقط</div></div></div>
+    <div class="sens-card"><span class="sens-icon">⚙️</span><div><div class="sens-name">تعديل الإعدادات المالية</div><div class="sens-desc">تغييرها يؤثر على النظام المالي كله — للمدير المالي فقط</div></div></div>
+    <div class="sens-card"><span class="sens-icon">🔑</span><div><div class="sens-name">إدارة الصلاحيات والمجموعات</div><div class="sens-desc">تؤثر على بنية النظام — لمسؤول تقني متخصص فقط</div></div></div>
+    <div class="sens-card"><span class="sens-icon">👤</span><div><div class="sens-name">إدارة حسابات المستخدمين</div><div class="sens-desc">تعطيل أو تعديل حساب يوقف دخول الموظف فورًا</div></div></div>
+    <div class="sens-card"><span class="sens-icon">📊</span><div><div class="sens-name">تصدير التقارير والتحليلات</div><div class="sens-desc">قد تحتوي بيانات حساسة — لمن يحتاجها فعلًا</div></div></div>
+  </div>
+</section>
+
+<!-- ══ DEFERRED ════════════════════════════════════ -->
+<section class="csec" id="deferred">
+  <div class="csec-title">
+    <div class="csec-title-icon" style="background:linear-gradient(135deg,var(--muted2),var(--muted));">⏳</div>
+    الصلاحيات المؤجلة للمرحلة التالية
+  </div>
+  <p class="csec-sub">هذه الصلاحيات موجودة في النظام لكن لا نوصي بتفعيلها الآن — تخص مرحلة متقدمة بعد استقرار التشغيل الأساسي</p>
+  <div class="csec-divider"></div>
+
+  <div class="rulebox" style="margin-bottom:24px;"><strong>السبب:</strong> إدخال هذه الأجزاء قبل استقرار التشغيل الأساسي قد يربك العميل ويزيد تعقيد الإعداد — الأفضل تركها غير مفعلة ومراجعتها في المرحلة التالية.</div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+    <div style="background:rgba(74,94,114,0.12);border:1px solid rgba(74,94,114,0.3);border-radius:14px;padding:22px 24px;">
+      <div style="font-size:12px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;">↩️ مرتجعات المبيعات</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+        <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--muted2);flex-shrink:0;"></span>مرتجعات المبيعات
+        </li>
+        <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--muted2);flex-shrink:0;"></span>عناصر مرتجعات المبيعات
+        </li>
+      </ul>
+      <div style="margin-top:14px;font-size:12px;color:var(--muted2);line-height:1.7;">تخص دورة أوسع ومتقدمة — إدخالها مبكرًا قد يربك التشغيل الأساسي</div>
+    </div>
+    <div style="background:rgba(74,94,114,0.12);border:1px solid rgba(74,94,114,0.3);border-radius:14px;padding:22px 24px;">
+      <div style="font-size:12px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;">↩️ مرتجعات المشتريات</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+        <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--muted2);flex-shrink:0;"></span>مرتجعات الشراء
+        </li>
+        <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--muted2);flex-shrink:0;"></span>عناصر مرتجعات الشراء
+        </li>
+      </ul>
+      <div style="margin-top:14px;font-size:12px;color:var(--muted2);line-height:1.7;">جزء من دورة شراء متكاملة — يُفعَّل بعد استقرار دورة الشراء الأساسية</div>
+    </div>
+    <div style="background:rgba(74,94,114,0.12);border:1px solid rgba(74,94,114,0.3);border-radius:14px;padding:22px 24px;">
+      <div style="font-size:12px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;">🛡️ إدارية حساسة — بحذر محدود</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+        <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);"><span style="width:6px;height:6px;border-radius:50%;background:var(--muted2);flex-shrink:0;"></span>الصلاحيات</li>
+        <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);"><span style="width:6px;height:6px;border-radius:50%;background:var(--muted2);flex-shrink:0;"></span>المستخدمون</li>
+        <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);"><span style="width:6px;height:6px;border-radius:50%;background:var(--muted2);flex-shrink:0;"></span>إعدادات الإشعارات</li>
+        <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);"><span style="width:6px;height:6px;border-radius:50%;background:var(--muted2);flex-shrink:0;"></span>أنواع المحتوى</li>
+        <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);"><span style="width:6px;height:6px;border-radius:50%;background:var(--muted2);flex-shrink:0;"></span>المجموعات</li>
+        <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);"><span style="width:6px;height:6px;border-radius:50%;background:var(--muted2);flex-shrink:0;"></span>الإعدادات المالية</li>
+        <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);"><span style="width:6px;height:6px;border-radius:50%;background:var(--muted2);flex-shrink:0;"></span>الحذف في الموديولات الحساسة</li>
+      </ul>
+      <div style="margin-top:14px;font-size:12px;color:var(--muted2);line-height:1.7;">ليست مؤجلة لكنها تحتاج حذرًا شديدًا — تُعطى بشكل محدود جدًا عند وجود حاجة حقيقية</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RECOMMENDATIONS ════════════════════════════ -->
+<section class="csec" id="recommendations">
+  <div class="csec-title">
+    <div class="csec-title-icon" style="background:linear-gradient(135deg,var(--green),#6ECFA0);">✅</div>
+    التوصية العملية للعميل
+  </div>
+  <p class="csec-sub">أفضل طريقة لبناء نظام صلاحيات صحيح من اليوم الأول</p>
+  <div class="csec-divider"></div>
+
+  <div class="summary-bar" style="margin-bottom:36px;">
+    الهدف الصحيح ليس إعطاء كل شيء لكل وظيفة — بل <strong>إعطاء كل وظيفة ما تحتاجه فقط</strong> مع إبقاء الصلاحيات الحساسة والمؤجلة تحت السيطرة
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:32px;">
+    <div style="background:rgba(61,184,120,0.07);border:1px solid rgba(61,184,120,0.2);border-radius:12px;padding:20px;display:flex;gap:14px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--green),#6ECFA0);color:var(--bg);font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Tajawal',sans-serif;">١</div>
+      <div><div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:5px;">شغّل الوظائف الأساسية أولًا</div><div style="font-size:12px;color:var(--muted);line-height:1.7;">ركّز على الوظائف التشغيلية اليومية — مندوب، مدير فرع، محاسب، فني</div></div>
+    </div>
+    <div style="background:rgba(61,184,120,0.07);border:1px solid rgba(61,184,120,0.2);border-radius:12px;padding:20px;display:flex;gap:14px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--green),#6ECFA0);color:var(--bg);font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Tajawal',sans-serif;">٢</div>
+      <div><div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:5px;">منح الحد الأدنى الكافي</div><div style="font-size:12px;color:var(--muted);line-height:1.7;">كل وظيفة تأخذ فقط ما تحتاجه — يمكن توسيع الصلاحيات لاحقًا عند الحاجة</div></div>
+    </div>
+    <div style="background:rgba(61,184,120,0.07);border:1px solid rgba(61,184,120,0.2);border-radius:12px;padding:20px;display:flex;gap:14px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--green),#6ECFA0);color:var(--bg);font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Tajawal',sans-serif;">٣</div>
+      <div><div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:5px;">إبقاء الحساسة محدودة</div><div style="font-size:12px;color:var(--muted);line-height:1.7;">الهاتف، الأسعار، التأكيد، الحذف — لا تُمنح إلا عند وجود سبب حقيقي</div></div>
+    </div>
+    <div style="background:rgba(61,184,120,0.07);border:1px solid rgba(61,184,120,0.2);border-radius:12px;padding:20px;display:flex;gap:14px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--green),#6ECFA0);color:var(--bg);font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Tajawal',sans-serif;">٤</div>
+      <div><div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:5px;">الصلاحيات المؤجلة تبقى غير مفعلة</div><div style="font-size:12px;color:var(--muted);line-height:1.7;">المرتجعات والأجزاء المتقدمة — تُراجع بعد استقرار التشغيل الأساسي</div></div>
+    </div>
+    <div style="background:rgba(61,184,120,0.07);border:1px solid rgba(61,184,120,0.2);border-radius:12px;padding:20px;display:flex;gap:14px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--green),#6ECFA0);color:var(--bg);font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Tajawal',sans-serif;">٥</div>
+      <div><div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:5px;">مراجعة دورية بعد الاستخدام</div><div style="font-size:12px;color:var(--muted);line-height:1.7;">بعد فترة تشغيل راجع الصلاحيات الممنوحة وقلّص ما لا يُستخدم فعليًا</div></div>
+    </div>
+  </div>
+
+  <div style="background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:24px 28px;">
+    <div style="font-size:12px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;">ملخص أنواع الصلاحيات في النظام</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(61,184,120,0.06);border:1px solid rgba(61,184,120,0.15);border-radius:8px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;"></span>
+        <div><div style="font-size:12px;font-weight:700;color:var(--green);">صلاحيات تشغيل يومي</div><div style="font-size:11px;color:var(--muted);">الأساسية للعمل اليومي</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(224,91,91,0.06);border:1px solid rgba(224,91,91,0.15);border-radius:8px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--red);flex-shrink:0;"></span>
+        <div><div style="font-size:12px;font-weight:700;color:var(--red2);">صلاحيات حساسة</div><div style="font-size:11px;color:var(--muted);">تُمنح بحذر وبسبب واضح</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(123,104,238,0.06);border:1px solid rgba(123,104,238,0.15);border-radius:8px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--purple);flex-shrink:0;"></span>
+        <div><div style="font-size:12px;font-weight:700;color:#9C8FFF;">صلاحيات إدارية</div><div style="font-size:11px;color:var(--muted);">لمسؤول النظام فقط</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(74,94,114,0.12);border:1px solid rgba(74,94,114,0.3);border-radius:8px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--muted2);flex-shrink:0;"></span>
+        <div><div style="font-size:12px;font-weight:700;color:var(--muted);">صلاحيات مؤجلة</div><div style="font-size:11px;color:var(--muted);">للمرحلة التالية</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BUILD ROLE ══════════════════════════════════ -->
+<section class="csec" id="buildrole">
+  <div class="csec-title">
+    <div class="csec-title-icon" style="background:linear-gradient(135deg,var(--gold),var(--gold2));">🔧</div>
+    كيف تبني وظيفة صحيحة
+  </div>
+  <div class="csec-divider"></div>
+  <div class="tips-grid">
+    <div class="tip-item"><div class="tip-n">١</div><div><div class="tip-title">ما الذي يجب أن يراه</div><div class="tip-text">حدد أي أقسام وبيانات يحتاج الموظف رؤيتها لأداء عمله</div></div></div>
+    <div class="tip-item"><div class="tip-n">٢</div><div><div class="tip-title">ما الذي يجب أن ينشئه</div><div class="tip-text">حدد ما إذا كان يحتاج إنشاء سجلات جديدة أم الاكتفاء بالعرض</div></div></div>
+    <div class="tip-item"><div class="tip-n">٣</div><div><div class="tip-title">ما الذي يجب أن يعدله</div><div class="tip-text">التعديل يحتاج تبريرًا — ليس الجميع يحتاج تعديل البيانات</div></div></div>
+    <div class="tip-item"><div class="tip-n">٤</div><div><div class="tip-title">ما الذي يجب أن يحذفه</div><div class="tip-text">الحذف لمن يحتاجه فعليًا فقط — وبحذر شديد</div></div></div>
+    <div class="tip-item"><div class="tip-n">٥</div><div><div class="tip-title">هل يحتاج بيانات حساسة</div><div class="tip-text">الهاتف، الأسعار، التأكيدات — لا تُمنح بدون سبب واضح</div></div></div>
+    <div class="tip-item"><div class="tip-n">٦</div><div><div class="tip-title">ما هو نطاق رؤيته</div><div class="tip-text">نفسه فقط؟ فريقه؟ فرعه؟ عدة فروع؟ أو الإدارة المركزية؟</div></div></div>
+  </div>
+</section>
+
+<!-- ══ TECH REF ════════════════════════════════════ -->
+<section class="csec" id="techref">
+  <div class="csec-title">
+    <div class="csec-title-icon" style="background:linear-gradient(135deg,var(--teal),var(--teal2));">💻</div>
+    المرجع التقني — أسماء الكيانات
+  </div>
+  <p class="csec-sub">الأسماء التقنية للصلاحيات داخل النظام — للمراجعة التقنية عند الإعداد</p>
+  <div class="csec-divider"></div>
+  <div class="rulebox info" style="margin-bottom:24px;"><strong>قاعدة التسمية:</strong> الصلاحيات العادية تُكتب بالشكل <span style="font-family:monospace;color:var(--teal2);">view_model / add_model / change_model / delete_model</span> — إذا ظهر فرق بسيط في التهجئة، يعتمد المسمى الظاهر في شاشة الصلاحيات داخل النظام.</div>
+
+  <div class="tech-group"><div class="tech-group-title">👤 المستخدمون</div><div class="tech-chips"><span class="tchip">user</span></div></div>
+  <div class="tech-group"><div class="tech-group-title">🏢 الفروع والمخزون</div><div class="tech-chips"><span class="tchip">branch</span><span class="tchip">branchaccounttransaction</span><span class="tchip">itemcategory</span><span class="tchip">unit</span><span class="tchip">inventoryitem</span><span class="tchip">movement</span><span class="tchip">preorder</span><span class="tchip">stockadjustment</span><span class="tchip">inventorylocation</span></div></div>
+  <div class="tech-group"><div class="tech-group-title">🤝 المبيعات والعملاء</div><div class="tech-chips"><span class="tchip">clientrequest</span><span class="tchip">customer</span><span class="tchip">customerphonenumber</span><span class="tchip">customerattachment</span><span class="tchip">customerprofilesnapshot</span><span class="tchip">customerfollowuptype</span><span class="tchip">followup</span><span class="tchip">quotation</span><span class="tchip">quotationitem</span><span class="tchip">salesinvoice</span><span class="tchip">salesinvoiceitem</span><span class="tchip">consumeditem</span><span class="tchip">consumeditemprice</span><span class="tchip">salesreturn</span><span class="tchip">salesreturnitem</span></div></div>
+  <div class="tech-group"><div class="tech-group-title">🛒 المشتريات</div><div class="tech-chips"><span class="tchip">warehouse</span><span class="tchip">expensecategory</span><span class="tchip">supplier</span><span class="tchip">purchaserequest</span><span class="tchip">purchaserequestitem</span><span class="tchip">purchaseorder</span><span class="tchip">purchaseorderitem</span><span class="tchip">purchaseinvoice</span><span class="tchip">purchaseinvoiceitem</span><span class="tchip">purchasereturn</span><span class="tchip">purchasereturnitem</span></div></div>
+  <div class="tech-group"><div class="tech-group-title">👥 الموارد البشرية</div><div class="tech-chips"><span class="tchip">jobrole</span><span class="tchip">employee</span><span class="tchip">employeeattachment</span><span class="tchip">applicant</span><span class="tchip">interview</span><span class="tchip">evaluation</span><span class="tchip">department</span><span class="tchip">leaverequest</span><span class="tchip">attendance</span><span class="tchip">bonusdeduction</span><span class="tchip">competition</span><span class="tchip">attendancepolicy</span><span class="tchip">officialholiday</span><span class="tchip">payrollrun</span><span class="tchip">payrollline</span><span class="tchip">task</span><span class="tchip">taskconsumeditem</span><span class="tchip">taskassignment</span><span class="tchip">taskcomment</span><span class="tchip">taskattachment</span><span class="tchip">taskactivitylog</span></div></div>
+  <div class="tech-group"><div class="tech-group-title">💰 المالية</div><div class="tech-chips"><span class="tchip">paymentmethod</span><span class="tchip">account</span><span class="tchip">taxtype</span><span class="tchip">costcenter</span><span class="tchip">fiscalyear</span><span class="tchip">journalentry</span><span class="tchip">journalentryline</span><span class="tchip">receiptvoucher</span><span class="tchip">receiptvoucherallocation</span><span class="tchip">paymentvoucher</span><span class="tchip">paymentvoucherallocation</span><span class="tchip">financialsettings</span></div></div>
+  <div class="tech-group"><div class="tech-group-title">📊 التقارير والتحليلات</div><div class="tech-chips"><span class="tchip">reporttemplate</span><span class="tchip">reportexecution</span><span class="tchip">scheduledreport</span><span class="tchip">dashboardwidget</span><span class="tchip">dashboard</span><span class="tchip">dashboardwidgetposition</span><span class="tchip">analyticscache</span><span class="tchip">userdashboardpreference</span><span class="tchip">analyticsalert</span></div></div>
+  <div class="tech-group"><div class="tech-group-title">🌐 محتوى الموقع</div><div class="tech-chips"><span class="tchip">gallery</span><span class="tchip">galleryimage</span><span class="tchip">customerreview</span><span class="tchip">service</span><span class="tchip">blog</span><span class="tchip">comment</span><span class="tchip">contactmessage</span><span class="tchip">sociallink</span><span class="tchip">privacypolicy</span></div></div>
+  <div class="tech-group"><div class="tech-group-title">🛡️ النظام والإدارة</div><div class="tech-chips"><span class="tchip">user</span><span class="tchip">permission</span><span class="tchip">group</span><span class="tchip">contenttype</span><span class="tchip">notificationsettings</span></div></div>
+  <div class="tech-group"><div class="tech-group-title" style="color:var(--red2);">⭐ الصلاحيات الخاصة غير التقليدية</div><div class="tech-chips"><span class="tchip special-perm">view_customerphonenumber</span><span class="tchip special-perm">view_customerprofilesnapshot</span><span class="tchip special-perm">view_consumeditemprice</span><span class="tchip special-perm">confirm_salesinvoice</span><span class="tchip special-perm">view_reports</span><span class="tchip special-perm">create_reports</span><span class="tchip special-perm">export_reports</span><span class="tchip special-perm">view_analytics</span><span class="tchip special-perm">create_analytics</span><span class="tchip special-perm">export_analytics</span></div></div>
+
+  <div class="summary-bar" style="margin-top:40px;">
+    منح الصلاحيات في هذا النظام يعني تحديد: <strong>ماذا يرى المستخدم — ماذا ينشئ — ماذا يعدل — وما هو النطاق الذي يعمل داخله</strong>
+  </div>
+</section>
+
+</main>
+</div>
+
+<button class="stt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div class="foot">المرجع الشامل لصلاحيات النظام — Royal Nano — تحديث مايو ٢٠٢٦ v2</div>
+
+<script>
+function togglePerm(item){
+  const body=item.querySelector('.perm-body');
+  const tog=item.querySelector('.perm-toggle');
+  const open=body.classList.contains('open');
+  body.classList.toggle('open',!open);
+  tog.style.transform=open?'rotate(0)':'rotate(180deg)';
+}
+function scrollTo(id){
+  const el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth'});
+  document.querySelectorAll('.tnav').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.sb-link').forEach(t=>t.classList.remove('active'));
+}
+function doSearch(q){
+  const val=q.trim().toLowerCase();
+  const items=document.querySelectorAll('.perm-item,.mod-group,.csec');
+  if(!val){
+    items.forEach(i=>i.classList.remove('hidden'));
+    document.querySelectorAll('.perm-item .perm-name').forEach(n=>{n.innerHTML=n.textContent;});
+    return;
+  }
+  document.querySelectorAll('.perm-item').forEach(item=>{
+    const name=item.querySelector('.perm-name');
+    const text=name.textContent.toLowerCase();
+    const body=item.innerText.toLowerCase();
+    if(body.includes(val)||text.includes(val)){
+      item.classList.remove('hidden');
+      // highlight
+      const re=new RegExp('('+val.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+      name.innerHTML=name.textContent.replace(re,'<span class="hl">$1</span>');
+    } else {
+      item.classList.add('hidden');
+    }
+  });
+  // show/hide groups
+  document.querySelectorAll('.mod-group').forEach(g=>{
+    const visible=[...g.querySelectorAll('.perm-item')].some(i=>!i.classList.contains('hidden'));
+    g.classList.toggle('hidden',!visible);
+  });
+  document.querySelectorAll('.csec').forEach(s=>{
+    const hasItems=s.querySelectorAll('.perm-item:not(.hidden)').length>0;
+    const hasGroups=s.querySelectorAll('.mod-group:not(.hidden)').length>0;
+    s.classList.toggle('hidden',!(hasItems||hasGroups));
+  });
+}
+// sidebar active on scroll
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const id=e.target.id;
+      document.querySelectorAll('.sb-link').forEach(l=>l.classList.remove('active'));
+      const match=document.querySelector(`.sb-link[onclick*="${id}"]`);
+      if(match)match.classList.add('active');
+    }
+  });
+},{threshold:0.2});
+document.querySelectorAll('.csec').forEach(s=>observer.observe(s));
+</script>
+</body>
+</html>
